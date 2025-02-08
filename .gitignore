@@ -1,0 +1,8 @@
+.env/
+media/
+static/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
