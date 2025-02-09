@@ -74,8 +74,7 @@ bg-gray-900 text-gray-100
         <div class="bg-gray-800/50 p-4 rounded-xl border border-gray-700/50">
           <hero-icon-outline
             name="clock"
-            class="w-8 h-8 text-indigo-400 mb-2"
-          ></hero-icon-outline>
+            class="w-8 h-8 text-indigo-400 mb-2"></hero-icon-outline>
           <h4 class="font-semibold mb-1">0-60 mph</h4>
           <p class="text-sm text-gray-400">2.9 Seconds</p>
         </div>
@@ -83,6 +82,14 @@ bg-gray-900 text-gray-100
 
       <!-- Key Specs -->
       <div class="space-y-4">
+        {% if vehicle.color %}
+        <div
+          class="flex justify-between items-center p-4 bg-gray-800/30 rounded-lg"
+        >
+          <span class="text-gray-400">Color</span>
+          <span class="font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-1.5 text-center ">Blue</span>
+        </div>
+        {% endif %}
         {% if vehicle.top_speed %}
         <div
           class="flex justify-between items-center p-4 bg-gray-800/30 rounded-lg"
@@ -105,13 +112,7 @@ bg-gray-900 text-gray-100
             {% endif %}
           </span>
         </div>
-         <div
-          class="flex justify-between items-center p-4 bg-gray-800/30 rounded-lg"
-        >
-          <span class="text-gray-400">Transmission</span>
-          <span class="font-semibold">8-Speed Dual-Clutch</span>
-        </div>
-        {% for feature in vehicle.features.objects.all %}
+        {% for feature in vehicle.features.all %}
         <button class="bg-transparent border border-blue-600 text-blue-600 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-blue-600 hover:text-white active:bg-blue-700 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">
           {{feature.name}}
         </button>
