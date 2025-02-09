@@ -11,7 +11,7 @@ bg-gray-900 text-gray-100
     <!-- Main Image Section -->
     <div class="relative group">
       <div
-        class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-3xl"
+        class="absolute inset-0 bg-gradient-to-r from-indigo-500/20  rounded-3xl"
       ></div>
       <img
         src="{{vehicle.images.url}}"
@@ -20,7 +20,7 @@ bg-gray-900 text-gray-100
       />
       {% if vehicle.price %}
       <div
-        class="absolute bottom-6 left-6 bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-2 rounded-full shadow-lg"
+        class="absolute bottom-6 left-6 bg-gradient-to-r from-purple-900 via-indigo-600 to-gray-800 px-6 py-2 rounded-full shadow-lg"
       >
         <span class="text-2xl font-bold">{{ vehicle.price|intcomma }} {% if vehicle.price_negotiability %} (Negotiable){% endif %}</span>
       </div>
