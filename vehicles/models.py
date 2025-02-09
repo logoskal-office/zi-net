@@ -20,6 +20,8 @@ class Vehicle(models.Model):
     condition_check = models.BooleanField(blank=True, null=True, choices={True:'Fully Checked', False:'Not-Fully Checked'})
     transmission = models.CharField(null=True, max_length=20, choices={'AU':'Automatic', 'MN':'Manual', 'SM': 'Semi-Auto', 'NN':'Other'}, verbose_name='Transmission')
     fuel_type = models.CharField(null=True, max_length=20, choices=general_data.selection_data.VehicleFuelType, verbose_name='Fuel')
+    top_speed = models.PositiveIntegerField(blank=True, null=True, verbose_name="Top Speed")
+    zero_to_hundered = models.FloatField(blank=True, null=True, verbose_name='0 To 100 Accelaration')
     plate_number = models.PositiveIntegerField(blank=True, null=True, verbose_name='Plate Number') # - size limit
     plate_ownership = models.PositiveIntegerField(blank=True, null=True, verbose_name='Type of Plate Number')
     plate_state = models.CharField(blank=True, null=True, max_length=20, choices={'AA': 'Addis Ababa', 'OR': 'Oromia', 'FD':'Federal', 'NN':'Other'}, verbose_name='State Of Issued Plated')
@@ -39,7 +41,7 @@ class Vehicle(models.Model):
 class FeatureType(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
-    logo = models.ImageField(upload_to='logos/feature-type-logos')
+    logo = models.ImageField(blank=True, null=True, upload_to='logos/feature-type-logos')
 
     class Meta:
         verbose_name = 'Feature Type'
@@ -52,7 +54,7 @@ class Feature(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
     type = models.ForeignKey(FeatureType, on_delete=models.DO_NOTHING)
-    logo = models.ImageField(upload_to='logos/feature-logos')
+    
 
     class Meta:
         verbose_name = 'Feature'

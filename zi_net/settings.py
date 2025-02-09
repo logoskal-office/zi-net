@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'silk',
+    'django.contrib.humanize',
     'display.apps.DisplayConfig',
     'vehicles.apps.VehiclesConfig',
 ]
