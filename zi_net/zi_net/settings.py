@@ -18,19 +18,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tailwind',
-    'theme',
-    'django_browser_reload',
-    'silk',
+    #'tailwind',
+    #'theme',
+    #'django_browser_reload',
+    #'silk',
     'django.contrib.humanize',
     'display.apps.DisplayConfig',
     'vehicles.apps.VehiclesConfig',
 ]
 
-
+"""
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ['127.0.0.1']
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"""
 
 
 MIDDLEWARE = [
@@ -41,8 +41,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_browser_reload.middleware.BrowserReloadMiddleware',
-    'silk.middleware.SilkyMiddleware',
+    #'django_browser_reload.middleware.BrowserReloadMiddleware',
+    #'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'zi_net.urls'
