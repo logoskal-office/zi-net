@@ -11,7 +11,5 @@ urlpatterns = [
    # path("silk/",include('silk.urls', namespace='silk')),
     path('', include('display.urls')),
     path('vehicles/', include('vehicles.urls')),
-    path('login/', user_auth_views.login, name='login-page'),
-    path('logout/', user_auth_views.logout, name='logout-page'),
-    path('register/', user_auth_views.register, name='register-page'),
+    path('auth/', include('user_auth.urls')),
 ] +  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,10 +2,10 @@ from django.shortcuts import render, HttpResponse
 
 
 def login(request):
-    return HttpResponse(request, 'A')
+    return render(request, 'user_auth/login.html')
 
 def logout(request):
-    return HttpResponse(request, 'A')
+    return render(request, 'user_auth/logout.html')
 
 def register(request):
-    return HttpResponse(request, 'A')
+    return render(request, 'user_auth/register.html')
