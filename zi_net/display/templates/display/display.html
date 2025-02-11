@@ -1,0 +1,96 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- Alpine.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Car Listings</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="bg-gray-100 font-sans">
+		<!-- Navbar -->
+		<nav class="bg-gray-900 p-4">
+			<div class="container mx-auto flex justify-between items-center text-white">
+				<h1 class="text-xl font-bold">Car Listings</h1>
+				<div>
+					<button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">Login</button>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Hero Section -->
+		<section class="bg-blue-600 text-white py-20 text-center">
+			<h2 class="text-3xl font-semibold mb-4">Find Your Dream Car</h2>
+			<p class="text-lg">Browse our exclusive collection of cars, from economy to luxury.</p>
+		</section>
+
+		<!-- Car Listings -->
+		<section class="container mx-auto px-4 py-10">
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+				<!-- Car 1 -->
+				<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+					<img src="https://via.placeholder.com/400x250" alt="Car 1" class="w-full h-48 object-cover" />
+					<div class="p-6">
+						<h3 class="text-xl font-semibold">2021 Tesla Model S</h3>
+						<p class="text-gray-500 mt-2">Electric | 15,000 miles</p>
+						<div class="mt-4 flex items-center justify-between">
+							<span class="text-2xl font-bold text-blue-600">$79,999</span>
+							<button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">View Details</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Car 2 -->
+				<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+					<img src="https://via.placeholder.com/400x250" alt="Car 2" class="w-full h-48 object-cover" />
+					<div class="p-6">
+						<h3 class="text-xl font-semibold">2020 BMW 3 Series</h3>
+						<p class="text-gray-500 mt-2">Gasoline | 25,000 miles</p>
+						<div class="mt-4 flex items-center justify-between">
+							<span class="text-2xl font-bold text-blue-600">$39,500</span>
+							<button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">View Details</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Car 3 -->
+				<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+					<img src="https://via.placeholder.com/400x250" alt="Car 3" class="w-full h-48 object-cover" />
+					<div class="p-6">
+						<h3 class="text-xl font-semibold">2019 Audi A4</h3>
+						<p class="text-gray-500 mt-2">Gasoline | 30,000 miles</p>
+						<div class="mt-4 flex items-center justify-between">
+							<span class="text-2xl font-bold text-blue-600">$32,000</span>
+							<button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">View Details</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Car 4 -->
+				<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+					<img src="https://via.placeholder.com/400x250" alt="Car 4" class="w-full h-48 object-cover" />
+					<div class="p-6">
+						<h3 class="text-xl font-semibold">2021 Ford Mustang</h3>
+						<p class="text-gray-500 mt-2">Gasoline | 10,000 miles</p>
+						<div class="mt-4 flex items-center justify-between">
+							<span class="text-2xl font-bold text-blue-600">$42,000</span>
+							<button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">View Details</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="bg-gray-900 text-white py-6">
+			<div class="container mx-auto text-center">
+				<p>&copy; 2025 Car Listings, Inc. All Rights Reserved.</p>
+			</div>
+		</footer>
+	</body>
+</html>
+
+{% endblock %}

@@ -5,4 +5,5 @@ from display import views as display_views
 urlpatterns = [
     path('', display_views.home, name='landing-page'),
     path('home/', display_views.home, name='home-page'),
+    path('test/', display_views.test, name='test-page'),
 ]

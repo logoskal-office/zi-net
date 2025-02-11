@@ -1,6 +1,10 @@
 from django.db import models
 import general_data
 import general_data.selection_data
+import os
+
+def get_upload_location_based_on_id(instance, filename):
+    return os.path.join('vehicles', 'images', str(instance.id), filename)
 
 class Vehicle(models.Model):
     producer = models.ForeignKey(to='Producer', verbose_name='Producer/Manufacturer', on_delete=models.DO_NOTHING)
@@ -29,7 +33,6 @@ class Vehicle(models.Model):
     description = models.TextField(null=True, blank=True, verbose_name='Description', max_length=2000)
     issues = models.TextField(blank=True, null=True, max_length=2000)
     frozen = models.BooleanField(default=False)
-    images = models.ImageField(blank=True, upload_to=f'albums/temp/')
 
     class Meta:
         verbose_name = 'Vehicle'
@@ -74,5 +77,14 @@ class Producer(models.Model):
 
     def __str__(self):
         return self.name
+
+class VehicleImage(models.Model):
+    vehicle = models.ForeignKey(to=Vehicle, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=get_upload_location_based_on_id)
+
+    def __str__(self):
+        return str(self.vehicle.producer.name + "'s Image - ") + str(self.id)
+
+
 #Check if there's an api to get car model data
 

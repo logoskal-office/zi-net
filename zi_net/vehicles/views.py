@@ -62,9 +62,8 @@ def list_all(request):
     # Add features to vehicle
     vehicle.features.add(feature, feature2)
     """
-
-
-    return render(request, 'vehicles/list-all-vehicles.html')
+    context = {'vehicles':Vehicle.objects.all()}
+    return render(request, 'vehicles/list-all-vehicles.html', context)
 
 def detail_vehicle(request, pk):
     vehicle = get_object_or_404(Vehicle, pk=pk)
