@@ -1,12 +1,15 @@
 from django.db import models
+from user_auth import models as user_auth_models
 import general_data
 import general_data.selection_data
 import os
-
+    
 def get_upload_location_based_on_id(instance, filename):
     return os.path.join('vehicles', 'images', str(instance.id), filename)
 
 class Vehicle(models.Model):
+    owner = models.ForeignKey('user_auth.Customer', related_name='owned_cars', on_delete=models.DO_NOTHING, blank=True, null=True)
+    broker = models.ForeignKey('user_auth.Broker', related_name='owned_cars', on_delete=models.DO_NOTHING, blank=True, null=True)
     producer = models.ForeignKey(to='Producer', verbose_name='Producer/Manufacturer', on_delete=models.DO_NOTHING)
     model = models.CharField(max_length=40, verbose_name='Model')
     common_name = models.CharField(blank=True, null=True, max_length=50, verbose_name='Common Name')

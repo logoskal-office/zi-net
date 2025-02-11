@@ -22,10 +22,10 @@ INSTALLED_APPS = [
     #'theme',
     #'django_browser_reload',
     #'silk',
+    'user_auth',         
     'django.contrib.humanize',
     'display.apps.DisplayConfig',
     'vehicles.apps.VehiclesConfig',
-    'user_auth.apps.UserAuthConfig',
 ]
 
 """
@@ -45,6 +45,7 @@ MIDDLEWARE = [
     'django_browser_reload.middleware.BrowserReloadMiddleware',
     #'silk.middleware.SilkyMiddleware',
 ]
+
 
 ROOT_URLCONF = 'zi_net.urls'
 
@@ -108,6 +109,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'user_auth.ZiUser'
 
 
 STATIC_URL = '/static/'
