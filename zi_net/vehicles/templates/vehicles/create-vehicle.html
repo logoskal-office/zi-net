@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load tailwind_filters %}
+{% block content %}
+<div class="flex items-center justify-center">
+<div class="w-1/2 lg:w-1/2 my-8">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div>
+            {{ vehicle_creation_form|crispy}}
+        </div>
+        <label for="images">Upload Images Of The Car:</label>
+        <input type="file" name="images" id="images" accept="image/*" multiple>
+        <button type="submit">Upload Vehicle</button>
+    </form>
+
+</div>
+</div>
+{% endblock content %}

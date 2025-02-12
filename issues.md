@@ -10,3 +10,8 @@
 -   [] -> $ Dynamic field generation based on whether the vehicle is electric or not
 -   [x] -> $ Create an images object
 -   [] - \* Add a loading element to wait until the page is fully loaded
+-   [] - $\* Complete Auth with UI
+-   [] - $ Move everything to class based views
+-   [] - $ Pass page_title in the context of all views
+-   [] - * Support Dark and light mode
+-   [] - $ Registration Token

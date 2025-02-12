@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.db.models import Q
 from .models import *
+from .forms import *
 
 def list_all(request):
     """
@@ -62,6 +63,7 @@ def list_all(request):
     # Add features to vehicle
     vehicle.features.add(feature, feature2)
     """
+
     context = {'vehicles':Vehicle.objects.all()}
     return render(request, 'vehicles/list-all-vehicles.html', context)
 
@@ -81,3 +83,25 @@ def search(request, key: str):
         print(results)
         key = results
     return HttpResponse(key)
+
+def create_vehicle(request):
+    if request.method == 'POST':
+        # Create forms for the Vehicle and the VehicleImage inline formset
+        vehicle_form = VehicleCreationForm(request.POST)
+        if vehicle_form.is_valid():
+            vehicle = vehicle_form.save(commit=False)
+            if request.user.is_customer:
+                vehicle.owner = request.user.customer_profile
+            if request.user.is_broker:
+                vehicle.broker = request.user.broker_profile
+            if 'images' in request.FILES:
+                print('There are images')
+                images = request.FILES.getlist('images')
+                print('Images :    ', images)
+                for image in images:
+                    VehicleImage.objects.create(vehicle=vehicle, image=image)
+                vehicle.save()
+
+                return HttpResponse('Successful')
+    else:
+        return render(request, 'vehicles/create-vehicle.html', {'vehicle_creation_form':VehicleCreationForm})

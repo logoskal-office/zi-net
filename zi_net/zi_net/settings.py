@@ -22,10 +22,13 @@ INSTALLED_APPS = [
     #'theme',
     #'django_browser_reload',
     #'silk',
+    'crispy_forms',
+    'crispy_tailwind',
     'user_auth',         
     'django.contrib.humanize',
     'display.apps.DisplayConfig',
     'vehicles.apps.VehiclesConfig',
+    
 ]
 
 """
@@ -118,5 +121,8 @@ STATICFILES_DIRS = [BASE_DIR / "static",]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = 'tailwind'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
