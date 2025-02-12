@@ -1,23 +1,23 @@
 {% extends 'base.html' %} {% block content %}
 
 <div x-data="{ showPassword: false }" class="flex items-center justify-center min-h-screen">
-	<div class="border-2 border-white p-6 rounded-lg w-full max-w-md text-sky-50">
+	<div class="bg-gradient-to-r from-white via-zink-500 to-gray-400 p-8 rounded-lg max-w-md ">
 		<h2 class="text-4xl font-semibold mb-4">Login</h2>
 		<h2 class="text-md font-semibold mb-8">Enter Your Username & Password To Log In To Your Account</h2>
 		<form method="POST">
 			{% csrf_token %}
 			<div class="mb-8">
-				<label for="username" class="block text-white text-sm font-medium mb-2">Username</label>
-				<input type="text" id="username" name="username" class="w-full border-2 border-white bg-transparent text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-white" placeholder="Enter your username" required />
+				<label for="username" class="block text-sm font-medium">Username</label>
+				<input type="text" id="username" name="username" class="w-full border-2 border-black bg-transparent text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-white" placeholder="Enter your username" required />
 			</div>
 			<div class="mb-8">
-				<label for="password" class="block text-white text-sm font-medium mb-2">Password</label>
+				<label for="password" class="block text-sm font-medium mb-2">Password</label>
 				<div class="relative">
 					<input
 						:type="showPassword ? 'text' : 'password'"
 						id="password"
 						name="password"
-						class="w-full border-2 border-white bg-transparent text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-white"
+						class="w-full border-2 border-black bg-transparent text-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-white"
 						placeholder="Enter your password"
 						required
 					/>
@@ -35,7 +35,7 @@
 					</button>
 				</div>
 			</div>
-			<button type="submit" class="w-full bg-white border-2 border-white py-2 rounded-lg text-black hover:scale-90 hover:text-scale-105 transition mb-4">Login</button>
+			<button type="submit" class="w-full bg-white border-2 border-black py-2 rounded-lg text-black hover:scale-90 hover:text-scale-105 transition mb-4">Login</button>
 		</form>
 		<div class="text-white text-center text-underline">Don't Have An Account? <a href="#" class="text-underline-white">Register</a></div>
 	</div>
