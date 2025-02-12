@@ -16,4 +16,5 @@
 -   [] - \* Support Dark and light mode
 -   [] - $ Registration & Post Token
 -   [] - +$\* Integrate Messages
--   [] - \* Style the forms
+-   [] - \* Style the formss
+-   [] - $ Logging Middleware
