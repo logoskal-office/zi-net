@@ -20,10 +20,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #'tailwind',
     #'theme',
-    #'django_browser_reload',
+    'django_browser_reload',
     #'silk',
-    # 'crispy_forms',
-    # 'crispy_tailwind',
+    'crispy_forms',
+    'crispy_tailwind',
     'user_auth',         
     'django.contrib.humanize',
     'display.apps.DisplayConfig',
@@ -31,10 +31,10 @@ INSTALLED_APPS = [
     
 ]
 
-"""
+
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ['127.0.0.1']
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"""
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 
 MIDDLEWARE = [
