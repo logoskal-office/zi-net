@@ -10,7 +10,7 @@
 	<div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
 		{% for vehicle in vehicles %}
 		<!-- Card 1 -->
-		<div
+		<a href="{% url 'detail-vehicle-page' vehicle.pk %}"
 			x-data="{ 
 			current: 0,
 			slides: [
@@ -83,7 +83,7 @@
 					</button>
 				</div>
 			</div>
-		</div>
+		</a>
 		{% endfor %}
 
 		<!-- Card 2 (Duplicate or modify as needed) -->
