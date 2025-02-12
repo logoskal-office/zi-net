@@ -4,7 +4,7 @@
 -   [] -> \* Make the whole page load before the typing effect, and if possible not show anything before the background loads
 -   [] -> \* Make a proper navbar
 -   [] -> \*$+ Make a login, register, logout, page
--   [] -> \*$+ Make a create, edit, hide, and delete vehicle page
+-   [x] -> \*$+ Make a create, edit, hide, and delete vehicle page
 -   [] -> \* Make a proper vehicle listing and detail page
 -   [] -> \* Make a search page
 -   [] -> $ Dynamic field generation based on whether the vehicle is electric or not
@@ -13,5 +13,7 @@
 -   [] - $\* Complete Auth with UI
 -   [] - $ Move everything to class based views
 -   [] - $ Pass page_title in the context of all views
--   [] - * Support Dark and light mode
--   [] - $ Registration Token
+-   [] - \* Support Dark and light mode
+-   [] - $ Registration & Post Token
+-   [] - +$\* Integrate Messages
+-   [] - \* Style the forms

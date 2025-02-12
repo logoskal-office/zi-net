@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.db.models import Q
 from .models import *
 from .forms import *
@@ -65,6 +65,10 @@ def list_all(request):
     """
 
     context = {'vehicles':Vehicle.objects.all()}
+    print(Vehicle.objects.all()[0].images.all())
+    # print(Vehicle.objects.all()[1].images)
+    # print(Vehicle.objects.all()[2].images)      
+    # print(Vehicle.objects.all()[3].images)      
     return render(request, 'vehicles/list-all-vehicles.html', context)
 
 def detail_vehicle(request, pk):
@@ -96,12 +100,24 @@ def create_vehicle(request):
                 vehicle.broker = request.user.broker_profile
             if 'images' in request.FILES:
                 print('There are images')
+                vehicle.save()
                 images = request.FILES.getlist('images')
                 print('Images :    ', images)
                 for image in images:
                     VehicleImage.objects.create(vehicle=vehicle, image=image)
-                vehicle.save()
 
                 return HttpResponse('Successful')
     else:
         return render(request, 'vehicles/create-vehicle.html', {'vehicle_creation_form':VehicleCreationForm})
+
+def update_vehicle(request, pk):
+    vehicle = get_object_or_404(Vehicle, pk=pk)
+    if request.method == 'POST':
+        form = VehicleUpdateForm(request.POST, instance=vehicle)
+        if form.is_valid():
+            form.save()
+            return redirect('detail-vehicle-page', pk=vehicle.pk)
+    else:
+        form = VehicleUpdateForm(instance=vehicle)
+    
+    return render(request, 'vehicles/update-vehicle.html', {'form': form})

@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:pk>/', detail_vehicle, name='detail-vehicle-page'),
     path('search/<str:key>/', search, name = 'search-vehicle-page'),
     path('create/', create_vehicle, name = 'create-vehicle-page'),
+    path('edit/<int:pk>/', update_vehicle, name = 'update-vehicle-page'),
     ]
