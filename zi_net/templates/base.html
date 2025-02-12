@@ -9,6 +9,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,800;1,800&display=swap" rel="stylesheet" />
 		<link href="/static/css/c.css/" rel="stylesheet" />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
 	</head>
 	<body class="font-sans h-screen bg-gradient-to-r from-black via-black-900 to-gray-900 bg-cover bg-center {% block body_classes %} {% endblock body_classes %}">
@@ -180,10 +181,10 @@
 			>
 				<li class="mb-4 border-none">
 					<div class="flex items-center gap-2 py-2">
-						<img src="https://penguinui.s3.amazonaws.com/component-assets/avatar-8.webp" alt="User Profile" class="size-12 rounded-full object-cover" />
+						<a href="wdw"><img src="https://penguinui.s3.amazonaws.com/component-assets/avatar-8.webp" alt="User Profile" class="size-12 rounded-full object-cover" /></a>
 						<div>
-							<span class="font-medium text-on-surface-strong dark:text-on-surface-dark-strong">Alice Brown</span>
-							<p class="text-sm text-on-surface dark:text-on-surface-dark">alice.brown@gmail.com</p>
+							<span class="font-medium text-on-surface-strong dark:text-on-surface-dark-strong">{{user.first_name}} {{user.last_name}}</span>
+							<p class="text-sm text-on-surface dark:text-on-surface-dark">@{{user.username}}</p>
 						</div>
 					</div>
 				</li>
@@ -224,5 +225,31 @@
 			{% endfor %}
 		</ul>
 		{% endif %} {% block content %} {% endblock content %}
+		<style>
+			/* Add your custom animation */
+			@keyframes pulse {
+			  0% {
+				transform: scale(1);
+			  }
+			  50% {
+				transform: scale(1.1);
+			  }
+			  100% {
+				transform: scale(1);
+			  }
+			}
+			.call-button {
+			  animation: pulse 1.5s ease-in-out infinite;
+			}
+		
+		  </style>
+		<div class="fixed bottom-5 right-5 lg:hidden">
+			<a href="tel:+123456789" class="call-button bg-amber-500 text-white p-4 px-5 rounded-full shadow-lg flex items-center justify-center hover:bg-green-600 transition duration-300">
+			  <!-- Using FontAwesome for the call icon -->
+			  <i class="fas fa-phone text-2xl"></i>
+			</a>
+		  </div>
+		
+		  <script src="https://kit.fontawesome.com/a076d05399.js" defer></script>
 	</body>
 </html>
