@@ -24,12 +24,16 @@ class Vehicle(models.Model):
     seat_size = models.PositiveIntegerField(blank=True, null=True, verbose_name='Number Of Seats', validators=[MaxValueValidator(8), MinValueValidator(1)]) # - size limit
     cylinder_number = models.SmallIntegerField(blank=True, null=True, verbose_name='Cylinder Number', validators=[MaxValueValidator(16), MinValueValidator(3)], choices=[(3,'3'), (4,'4'), (6,'6'), (8,'8'), (12,'12'), (16,'16')]) # - size limit    
     mileage = models.PositiveIntegerField(blank=True, null=True, default=0, verbose_name='Mileage') # - size limit
+    range = models.PositiveIntegerField(blank=True, null=True, verbose_name='Range In KM', validators=[MaxValueValidator(2000)])
+    battery_capacity = models.PositiveIntegerField(blank=True, null=True, verbose_name='Battery Capacity In kWh', validators=[MaxValueValidator(500000)])
     condition = models.CharField(blank=True, null=True, max_length=20, choices=general_data.selection_data.VehicleCondition, verbose_name='Condition')
     condition_check = models.BooleanField(blank=True, null=True, choices={True:'Fully Checked', False:'Not-Fully Checked'})
     transmission = models.CharField(null=True, max_length=20, choices={'AU':'Automatic', 'MN':'Manual', 'SM': 'Semi-Auto', 'NN':'Other'}, verbose_name='Transmission')
     fuel_type = models.CharField(null=True, max_length=20, choices=general_data.selection_data.VehicleFuelType, verbose_name='Fuel')
     top_speed = models.PositiveIntegerField(blank=True, null=True, verbose_name="Top Speed")
+    horsepower = models.PositiveSmallIntegerField(blank=True, null=True, validators=[MaxValueValidator(2000)])
     zero_to_hundered = models.FloatField(blank=True, null=True, verbose_name='Accelaration (0 To 100)', validators=[MaxValueValidator(10), MinValueValidator(2)],)
+    offroad = models.BooleanField(null=True, blank=True)
     plate_number = models.PositiveIntegerField(blank=True, null=True, verbose_name='Plate Number', validators=[MaxValueValidator(1), MinValueValidator(99999)]) # - size limit
     plate_ownership = models.CharField(blank=True, null=True, max_length=5, verbose_name='Type of Plate Number', choices={'1':'1', '2':'2', '3':'3', '4':'4', '5':'5', 'ተላላፊ':'ተላላፊ'})
     plate_state = models.CharField(blank=True, null=True, max_length=20, choices={'AA': 'Addis Ababa', 'OR': 'Oromia', 'FD':'Federal', 'NN':'Other'}, verbose_name='State Of Issued Plated')
@@ -43,7 +47,7 @@ class Vehicle(models.Model):
         verbose_name_plural = 'Vehicles'
     
     def __str__(self):
-        return self.producer.name + " " + self.model + f" ({self.id})"
+        return self.producer.name + " " + self.model + f" - {self.common_name} (ID: {self.id})"
         
 class FeatureType(models.Model):
     name = models.CharField(max_length=50)
@@ -59,7 +63,7 @@ class FeatureType(models.Model):
 class Feature(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
-    type = models.ForeignKey(FeatureType, on_delete=models.DO_NOTHING)
+    type = models.ForeignKey(FeatureType, null=True, blank=True, on_delete=models.DO_NOTHING)
     
     class Meta:
         verbose_name = 'Feature'
@@ -82,7 +86,7 @@ class Producer(models.Model):
 
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='vehicles/images/')
+    image = models.FileField(upload_to='vehicles/images/')
 
     def __str__(self):
         return str(self.vehicle.producer.name + "'s Image - ") + str(self.vehicle.id)

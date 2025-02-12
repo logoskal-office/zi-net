@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django import http
 from django.db.models import Q
 from .models import *
 from .forms import *
+import magic
 
 def list_all(request):
     """
@@ -104,8 +106,10 @@ def create_vehicle(request):
                 images = request.FILES.getlist('images')
                 print('Images :    ', images)
                 for image in images:
-                    VehicleImage.objects.create(vehicle=vehicle, image=image)
-
+                    if (magic.from_buffer(image.read(), mime=True))[5] == 'image':
+                        VehicleImage.objects.create(vehicle=vehicle, image=image)
+                    else:
+                        return http.HttpResponseBadRequest('Non-Images Not Allowed')
                 return HttpResponse('Successful')
     else:
         return render(request, 'vehicles/create-vehicle.html', {'vehicle_creation_form':VehicleCreationForm})

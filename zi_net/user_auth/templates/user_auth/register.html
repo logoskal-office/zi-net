@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex items-center justify-center min-h-screen">
+	<div class="border-2 border-white p-6 rounded-lg w-full max-w-md text-sky-50 text-black">
+		<h2 class="text-4xl font-semibold mb-4">Register</h2>
+		<h2 class="text-md font-semibold mb-8">Create Your Account</h2>
+		<form method="POST">
+			{% csrf_token %} {{form}}
+			<button type="submit" class="w-full bg-white border-2 border-white py-2 rounded-lg text-black hover:scale-90 hover:text-scale-105 transition mb-4">Register</button>
+		</form>
+		<div class="text-black text-center text-underline">Already have an account? <a href="{% url 'login-page' %}" class="text-underline-white">Login</a></div>
+	</div>
+</div>
+{% endblock content %}
