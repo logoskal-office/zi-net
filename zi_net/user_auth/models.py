@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from vehicles import models as VehicleModels
 
 class ZiUser(AbstractUser):
-    phone_number = models.CharField(max_length=13, blank=True)
     gender = models.BooleanField(blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
     address = models.CharField(max_length=20, blank=True, null=True)
@@ -30,6 +29,7 @@ class ZiUser(AbstractUser):
 
 class Customer(models.Model):
     account = models.OneToOneField(ZiUser, blank=True, null=True, related_name='customer_profile', on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=13, blank=True)
     interested_cars = models.ManyToManyField('vehicles.Vehicle', through='VehicleInterest', related_name='customers_interesed')
     name = models.CharField(null=True, blank=True, default='', max_length=30)
     rating = models.PositiveSmallIntegerField(default=5)
@@ -48,6 +48,7 @@ class Customer(models.Model):
 
 class Broker(models.Model):
     account = models.OneToOneField(ZiUser, blank=True, null=True, related_name='broker_profile', on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=13, blank=True)
     interest_cars = models.ManyToManyField('vehicles.Vehicle', through='VehicleInterest', related_name='brokers_interesed')
     name = models.CharField(max_length=30, default='')
     rating = models.PositiveSmallIntegerField(null=True, blank=True, default=5)
