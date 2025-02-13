@@ -22,7 +22,7 @@ class Vehicle(models.Model):
     body_type = models.CharField(null=True, max_length=20, choices=general_data.selection_data.VehicleBodyTypeList, verbose_name='Body Type')
     color = models.CharField(null=True, max_length=20, choices = general_data.selection_data.VehicleBodyColorList, verbose_name='Color')
     seat_size = models.PositiveIntegerField(blank=True, null=True, verbose_name='Number Of Seats', validators=[MaxValueValidator(8), MinValueValidator(1)]) # - size limit
-    cylinder_number = models.SmallIntegerField(blank=True, null=True, verbose_name='Cylinder Number', validators=[MaxValueValidator(16), MinValueValidator(3)], choices=[(3,'3'), (4,'4'), (6,'6'), (8,'8'), (12,'12'), (16,'16')]) # - size limit    
+    cylinder_number = models.SmallIntegerField(blank=True, null=True, verbose_name='Cylinder Number', validators=[MaxValueValidator(16), MinValueValidator(3)]) # - size limit    
     mileage = models.PositiveIntegerField(blank=True, null=True, default=0, verbose_name='Mileage') # - size limit
     range = models.PositiveIntegerField(blank=True, null=True, verbose_name='Range In KM', validators=[MaxValueValidator(2000)])
     battery_capacity = models.PositiveIntegerField(blank=True, null=True, verbose_name='Battery Capacity In kWh', validators=[MaxValueValidator(500000)])
@@ -35,8 +35,8 @@ class Vehicle(models.Model):
     zero_to_hundered = models.FloatField(blank=True, null=True, verbose_name='Accelaration (0 To 100)', validators=[MaxValueValidator(10), MinValueValidator(2)],)
     offroad = models.BooleanField(null=True, blank=True)
     plate_number = models.PositiveIntegerField(blank=True, null=True, verbose_name='Plate Number', validators=[MaxValueValidator(1), MinValueValidator(99999)]) # - size limit
-    plate_ownership = models.CharField(blank=True, null=True, max_length=5, verbose_name='Type of Plate Number', choices={'1':'1', '2':'2', '3':'3', '4':'4', '5':'5', 'ተላላፊ':'ተላላፊ'})
-    plate_state = models.CharField(blank=True, null=True, max_length=20, choices={'AA': 'Addis Ababa', 'OR': 'Oromia', 'FD':'Federal', 'NN':'Other'}, verbose_name='State Of Issued Plated')
+    plate_ownership = models.CharField(blank=True, null=True, max_length=5, verbose_name='Type of Plate Number', )
+    plate_state = models.CharField(blank=True, null=True, max_length=20, verbose_name='State Of Issued Plated')
     features = models.ManyToManyField('Feature', blank=True, verbose_name='Features')
     description = models.TextField(null=True, blank=True, verbose_name='Description', max_length=2000)
     issues = models.TextField(blank=True, null=True, max_length=2000)
