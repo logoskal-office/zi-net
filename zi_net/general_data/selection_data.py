@@ -1,79 +1,86 @@
 from django.db import models
 
-class CountryList(models.TextChoices):
-    JAPAN = "JP", "Japan"
-    USA = "US", "United States"
-    GERMANY = "DE", "Germany"
-    CHINA = "CN", "China"
-    INDIA = "IN", "India"
-    ITALY = "IT", "Italy"
-    MEXICO = "MX", "Mexico"
-    SKOREA = "KR", "South Korea"
-    BRAZIL = "BR", "Brazil"
-    FRANCE = "FR", "France"
-    SPAIN = "ES", "Spain"
-    CANADA = "CA", "Canada"
-    UNITEDKINGDOM = "UK", "United Kingdom"
-    RUSSIA = "RU", "Russia"
-    TURKEY = "TR", "Turkey"
-    OTHER = "NN", "Other"
+CountryList = {
+    "JP": "Japan",
+    "US": "United States",
+    "DE": "Germany",
+    "CN": "China",
+    "IN": "India",
+    "IT": "Italy",
+    "MX": "Mexico",
+    "KR": "South Korea",
+    "BR": "Brazil",
+    "FR": "France",
+    "ES": "Spain",
+    "CA": "Canada",
+    "UK": "United Kingdom",
+    "RU": "Russia",
+    "TR": "Turkey",
+    "NN": "Other"
+}
 
-class VehicleBodyTypeList(models.TextChoices):
-    SEDAN = "SD", "Sedan"
-    SUV = "SV", "SUV"
-    HATCHBACK = "HB", "Hatchback"
-    COUPE = "CP", "Coupe"
-    COMPACT = "CM", "Compact"
-    CONVERTIBLE = "CV", "Convertible"
-    MINIVAN = "MV", "Minivan"
-    PICKUP = "PU", "Pickup Truck"
-    SPORTS = "SC", "Sports Car"
-    LUXURY = "LC", "Luxury Car"
-    CONSTRUCTION = "CN", "Construction Vehicle"
-    LIMOUSINE = "LM", "Limousine"
-    OTHER = "NN", "Other"
 
-class VehicleBodyColorList(models.TextChoices):
-    BLACK = "BK", "Black"
-    WHITE = "WT", "White"
-    SILVER = "SV", "Silver"
-    RED = "RD", "Red"
-    BLUE = "BL", "Blue"
-    GRAY = "GY", "Gray"
-    BEIGE = "BG", "Beige"
-    BROWN = "BN", "Brown"
-    BRONZE = "BZ", "Bronze"
-    CARAME = "CA", "Caramel"
-    CHARCOAL = "CH", "Charcoal"
-    COPPER = "CP", "Copper"
-    CYAN = "CY", "Cyan"
-    EMERALD = "EM", "Emerald"
-    FUCHSIA = "FC", "Fuchsia"
-    GOLD = "GD", "Gold"
-    GREEN = "GN", "Green"
-    IVORY = "IV", "Ivory"
-    LIME = "LM", "Lime"
-    MINT = "MT", "Mint"
-    NAVY = "NV", "Navy"
-    ORANGE = "OG", "Orange"
-    PINK = "PN", "Pink"
-    PURPLE = "PU", "Purple"
-    TURQUOISE = "TQ", "Turquoise"
-    YELLOW = "YL", "Yellow"
-    OTHER = "NN", "Other"
+VehicleBodyTypeList = {
+    "SD": "Sedan",
+    "SV": "SUV",
+    "HB": "Hatchback",
+    "CP": "Coupe",
+    "CM": "Compact",
+    "CV": "Convertible",
+    "MV": "Minivan",
+    "PU": "Pickup Truck",
+    "SC": "Sports Car",
+    "LC": "Luxury Car",
+    "CN": "Construction Vehicle",
+    "LM": "Limousine",
+    "NN": "Other"
+}
 
-class VehicleCondition(models.TextChoices):
-    NEW = "S", "Brand New"
-    EXCELLENT = "A", "Excellent"
-    GOOD = "B", "Good"
-    SUBOPTIMAL = "C", "Sub-Optimal"
-    BAD = "D", "Bad"
-    DEAD = "F", "Non-Working"
-    OTHER = "NN", "Other"
 
-class VehicleFuelType(models.TextChoices):
-    BENZENE = "BN", "Benzene"
-    DIESEL = "DS", "Diesel"
-    ELECTRIC = "EL", "Electric"
-    HYBRID = "HY", "Hybrid"
-    OTHER = "NN", "Other"
+VehicleBodyColorList = {
+    "BK": "Black",
+    "WT": "White",
+    "SV": "Silver",
+    "RD": "Red",
+    "BL": "Blue",
+    "GY": "Gray",
+    "BG": "Beige",
+    "BN": "Brown",
+    "BZ": "Bronze",
+    "CA": "Caramel",
+    "CH": "Charcoal",
+    "CP": "Copper",
+    "CY": "Cyan",
+    "EM": "Emerald",
+    "FC": "Fuchsia",
+    "GD": "Gold",
+    "GN": "Green",
+    "IV": "Ivory",
+    "LM": "Lime",
+    "MT": "Mint",
+    "NV": "Navy",
+    "OG": "Orange",
+    "PN": "Pink",
+    "PU": "Purple",
+    "TQ": "Turquoise",
+    "YL": "Yellow",
+    "NN": "Other"
+}
+
+VehicleCondition = {
+    "S": "Brand New",
+    "A": "Excellent",
+    "B": "Good",
+    "C": "Sub-Optimal",
+    "D": "Bad",
+    "F": "Non-Working",
+    "NN": "Other"
+}
+
+VehicleFuelType = {
+    "BN": "Benzene",
+    "DS": "Diesel",
+    "EL": "Electric",
+    "HY": "Hybrid",
+    "NN": "Other"
+}

@@ -13,11 +13,14 @@ class VehicleCreationForm(ModelForm):
             'fuel_type', 'top_speed', 'zero_to_hundered', 'plate_number', 'plate_ownership',
             'plate_state', 'features', 'description', 'issues'
         ]
+        labels = {
+            'issues': 'Are There Any Known Issues With The Car'
+        }
 
 class VehicleImageForm(ModelForm):
     class Meta:
         model = VehicleImage
-        fields = ['__all__']
+        exclude = ['image']
 
 VehicleImageInlineFormSet = inlineformset_factory(Vehicle, VehicleImage, form=VehicleImageForm, extra=1, fields=['image'])
 
