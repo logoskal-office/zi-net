@@ -14,8 +14,8 @@ class Vehicle(models.Model):
     producer = models.ForeignKey(to='Producer', verbose_name='Producer/Manufacturer', on_delete=models.DO_NOTHING)
     model = models.CharField(max_length=40, verbose_name='Model')
     common_name = models.CharField(blank=True, null=True, max_length=50, verbose_name='Common Name')
-    production_year = models.PositiveIntegerField(blank=True, null=True, verbose_name='Production Year', validators=[MaxValueValidator(2025), MinValueValidator(1995)], choices=[(year, str(year)) for year in range(1995, 2025)])
-    production_country = models.CharField(blank=True, null=True, max_length=10, verbose_name='Production Country', choices=general_data.selection_data.CountryList)
+    production_year = models.PositiveIntegerField(blank=True, null=True, verbose_name='Production Year', validators=[MaxValueValidator(2025), MinValueValidator(1995)])
+    production_country = models.CharField(blank=True, null=True, max_length=10, verbose_name='Production Country')
     price = models.PositiveIntegerField(null=True, verbose_name='Price') # - size llimit
     price_negotiability = models.BooleanField(null=True, verbose_name='Negotiable')
     existing_debt = models.IntegerField(blank=True, null=True, default=0, verbose_name='Existing-Debt') # -  size limit
