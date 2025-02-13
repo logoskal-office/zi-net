@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-h)1q9v5cb(61fs+yzr0k6jzp+_kz2hr&1b=)#!upfg75-$q-u6
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['psalms.pythonanwhere.com', 'localhost']
 
 
 INSTALLED_APPS = [
@@ -24,11 +24,11 @@ INSTALLED_APPS = [
     #'silk',
     'crispy_forms',
     'crispy_tailwind',
-    'user_auth',         
+    'user_auth',
     'django.contrib.humanize',
     'display.apps.DisplayConfig',
     'vehicles.apps.VehiclesConfig',
-    
+
 ]
 
 
@@ -118,7 +118,7 @@ AUTH_USER_MODEL = 'user_auth.ZiUser'
 LOGIN_URL = '/auth/login/'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "staticfiles" 
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static",]
 
 MEDIA_URL = '/media/'
