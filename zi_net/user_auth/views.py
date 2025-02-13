@@ -12,7 +12,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("home-page")  # Replace 'home' with the name of your desired redirect URL
+            return redirect("/admin")  # Replace 'home' with the name of your desired redirect URL
         else:
             messages.error(request, "Invalid username or password")
             return HttpResponse(username, password)

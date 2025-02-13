@@ -8,10 +8,9 @@ class ZiUser(AbstractUser):
     birthday = models.DateField(blank=True, null=True)
     address = models.CharField(max_length=20, blank=True, null=True)
     
-
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = 'User Account'
+        verbose_name_plural = 'User Accounts'
     
     def __str__(self):
         _ = ''
