@@ -47,6 +47,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
     #'silk.middleware.SilkyMiddleware',
+    'user_auth.middleware.LoginRequiredMiddleware',
 ]
 
 
@@ -114,6 +115,7 @@ USE_TZ = True
 
 AUTH_USER_MODEL = 'user_auth.ZiUser'
 
+LOGIN_URL = '/auth/login/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles" 

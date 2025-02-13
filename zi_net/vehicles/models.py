@@ -75,7 +75,7 @@ class Feature(models.Model):
 class Producer(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000)
-    logo = models.ImageField(upload_to='logos/vehicle-producers/')
+    logo = models.ImageField(null=True, blank=True, default='default.jpeg', upload_to='logos/vehicle-producers/')
 
     class Meta:
         verbose_name = 'Producer'

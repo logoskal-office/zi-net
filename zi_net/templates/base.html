@@ -2,15 +2,14 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=0.9" />
 		<title>Zi-Mekina {% if page_title %} - {{page_title}} {% endif %}</title>
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,800;1,800&display=swap" rel="stylesheet" />
 		<link href="/static/css/c.css/" rel="stylesheet" />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
 	</head>
 	<body class="font-sans h-screen bg-gradient-to-r from-black via-black-900 to-gray-900 bg-cover bg-center {% block body_classes %} {% endblock body_classes %}">
 		<nav
@@ -197,7 +196,7 @@
 				<li class="p-2">
 					<a href="{% url 'contact-us-page' %}" class="w-full text-lg font-medium text-primary focus:underline dark:text-primary-dark" aria-current="page">Contact Us</a>
 				</li>
-				
+
 				<hr role="none" class="my-2 border-outline dark:border-outline-dark" />
 				<li class="p-2">
 					<a href="/admin" class="w-full text-on-surface focus:underline dark:text-on-surface-dark">Admin Page</a>
@@ -228,28 +227,27 @@
 		<style>
 			/* Add your custom animation */
 			@keyframes pulse {
-			  0% {
-				transform: scale(1);
-			  }
-			  50% {
-				transform: scale(1.1);
-			  }
-			  100% {
-				transform: scale(1);
-			  }
+				0% {
+					transform: scale(1);
+				}
+				50% {
+					transform: scale(1.1);
+				}
+				100% {
+					transform: scale(1);
+				}
 			}
 			.call-button {
-			  animation: pulse 1.5s ease-in-out infinite;
+				animation: pulse 1.5s ease-in-out infinite;
 			}
-		
-		  </style>
+		</style>
 		<div class="fixed bottom-5 right-5 lg:hidden">
 			<a href="tel:+123456789" class="call-button bg-amber-500 text-white p-4 px-5 rounded-full shadow-lg flex items-center justify-center hover:bg-green-600 transition duration-300">
-			  <!-- Using FontAwesome for the call icon -->
-			  <i class="fas fa-phone text-2xl"></i>
+				<!-- Using FontAwesome for the call icon -->
+				<i class="fas fa-phone text-2xl"></i>
 			</a>
-		  </div>
-		
-		  <script src="https://kit.fontawesome.com/a076d05399.js" defer></script>
+		</div>
+
+		<script src="https://kit.fontawesome.com/a076d05399.js" defer></script>
 	</body>
 </html>
