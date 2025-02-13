@@ -20,7 +20,7 @@ class VehicleCreationForm(ModelForm):
 class VehicleImageForm(ModelForm):
     class Meta:
         model = VehicleImage
-        fields = ['image']
+        fields = ['__all__']
 
 VehicleImageInlineFormSet = inlineformset_factory(Vehicle, VehicleImage, form=VehicleImageForm, extra=1, fields=['image'])
 
