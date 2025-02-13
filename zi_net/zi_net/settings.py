@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-h)1q9v5cb(61fs+yzr0k6jzp+_kz2hr&1b=)#!upfg75-$q-u6
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['psalms.pythonanwhere.com', 'localhost']
+ALLOWED_HOSTS = ['psalms.pythonanywhere.com', 'localhost']
 
 
 INSTALLED_APPS = [
