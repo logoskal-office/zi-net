@@ -19,17 +19,17 @@ class Vehicle(models.Model):
     price = models.PositiveIntegerField(null=True, verbose_name='Price') # - size llimit
     price_negotiability = models.BooleanField(null=True, verbose_name='Negotiable')
     existing_debt = models.IntegerField(blank=True, null=True, default=0, verbose_name='Existing-Debt') # -  size limit
-    body_type = models.CharField(null=True, max_length=20, choices=general_data.selection_data.VehicleBodyTypeList, verbose_name='Body Type')
-    color = models.CharField(null=True, max_length=20, choices = general_data.selection_data.VehicleBodyColorList, verbose_name='Color')
+    body_type = models.CharField(null=True, max_length=20, verbose_name='Body Type')
+    color = models.CharField(null=True, max_length=20, verbose_name='Color')
     seat_size = models.PositiveIntegerField(blank=True, null=True, verbose_name='Number Of Seats', validators=[MaxValueValidator(8), MinValueValidator(1)]) # - size limit
     cylinder_number = models.SmallIntegerField(blank=True, null=True, verbose_name='Cylinder Number', validators=[MaxValueValidator(16), MinValueValidator(3)]) # - size limit    
     mileage = models.PositiveIntegerField(blank=True, null=True, default=0, verbose_name='Mileage') # - size limit
     range = models.PositiveIntegerField(blank=True, null=True, verbose_name='Range In KM', validators=[MaxValueValidator(2000)])
     battery_capacity = models.PositiveIntegerField(blank=True, null=True, verbose_name='Battery Capacity In kWh', validators=[MaxValueValidator(500000)])
-    condition = models.CharField(blank=True, null=True, max_length=20, choices=general_data.selection_data.VehicleCondition, verbose_name='Condition')
-    condition_check = models.BooleanField(blank=True, null=True, choices={True:'Fully Checked', False:'Not-Fully Checked'})
-    transmission = models.CharField(null=True, max_length=20, choices={'AU':'Automatic', 'MN':'Manual', 'SM': 'Semi-Auto', 'NN':'Other'}, verbose_name='Transmission')
-    fuel_type = models.CharField(null=True, max_length=20, choices=general_data.selection_data.VehicleFuelType, verbose_name='Fuel')
+    condition = models.CharField(blank=True, null=True, max_length=20,  verbose_name='Condition')
+    condition_check = models.BooleanField(blank=True, null=True, )
+    transmission = models.CharField(null=True, max_length=20,  verbose_name='Transmission')
+    fuel_type = models.CharField(null=True, max_length=20,  verbose_name='Fuel')
     top_speed = models.PositiveIntegerField(blank=True, null=True, verbose_name="Top Speed")
     horsepower = models.PositiveSmallIntegerField(blank=True, null=True, validators=[MaxValueValidator(2000)])
     zero_to_hundered = models.FloatField(blank=True, null=True, verbose_name='Accelaration (0 To 100)', validators=[MaxValueValidator(10), MinValueValidator(2)],)
