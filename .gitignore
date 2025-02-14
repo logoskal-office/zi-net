@@ -1,6 +1,4 @@
 .env/
-media/
-static/
 .recycle-bin/
 *.jpg
 *.jpeg
