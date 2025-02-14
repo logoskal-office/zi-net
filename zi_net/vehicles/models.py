@@ -1,8 +1,8 @@
 from django.db import models
 from user_auth import models as user_auth_models
 from django.core.validators import MaxValueValidator, MinValueValidator
-import general_data
-import general_data.selection_data
+import general
+import general.selection_data
 import os
     
 def get_upload_location_based_on_id(instance, filename):

@@ -11,7 +11,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
 	</head>
-	<body class="font-sans h-screen bg-gradient-to-r from-black via-black-900 to-gray-900 bg-cover bg-center {% block body_classes %} {% endblock body_classes %}">
+	<body class="font-sans h-screen bg-gradient-to-r from-black via-black-900 to-gray-900 bg-cover bg-center text-[#404654] {% block body_classes %} {% endblock body_classes %}" style="">
 		<nav
 			x-data="{ mobileMenuIsOpen: false }"
 			x-on:click.away="mobileMenuIsOpen = false"
@@ -25,7 +25,7 @@
 			</a>
 
 			<!-- Desktop Menu -->
-			<ul class="hidden items-center gap-4 sm:flex">
+			<ul class="hidden items-center gap-8 sm:flex">
 				<li>
 					<div x-data="{ isOpen: false }" class="">
 						<!-- Search Button -->
@@ -55,13 +55,13 @@
 					</div>
 				</li>
 				<li>
-					<a href="{% url 'list-vehicle-page' %}" class="font-bold text-primary underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-primary-dark dark:hover:text-primary-dark" aria-current="page">Cars For Sale</a>
+					<a href="{% url 'list-vehicle-page' %}" class="font-medium text-primary underline-offset-2 hover:text-primary focus:outline-hidden focus:underline text-primary-dark dark:hover:text-primary-dark" aria-current="page">Buy</a>
 				</li>
 				<li>
-					<a href="{% url 'create-vehicle-page' %}" class="font-bold text-on-surface underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-on-surface-dark dark:hover:text-primary-dark">Sell Your Car</a>
+					<a href="{% url 'create-vehicle-page' %}" class="font-medium text-on-surface underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-on-surface-dark dark:hover:text-primary-dark">Sell</a>
 				</li>
 				<li>
-					<a href="{% url 'contact-us-page' %}" class="font-bold text-on-surface underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-on-surface-dark dark:hover:text-primary-dark">Contact Us</a>
+					<a href="{% url 'contact-us-page' %}" class="font-medium text-on-surface underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-on-surface-dark dark:hover:text-primary-dark">Contact Us</a>
 				</li>
 				<li>
 					<a href="{% url 'about-us-page' %}" class="font-medium text-on-surface underline-offset-2 hover:text-primary focus:outline-hidden focus:underline dark:text-on-surface-dark dark:hover:text-primary-dark">About Us</a>

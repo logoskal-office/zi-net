@@ -1,6 +1,6 @@
 from django.forms import ModelForm, Form, inlineformset_factory
 from django.forms import models
-import general_data
+import general
 from .models import Vehicle, VehicleImage
 
 class VehicleCreationForm(ModelForm):
