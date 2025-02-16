@@ -19,5 +19,6 @@
 
 Immediate
 
--   [] -> \* Make a proper navbar
+-   [x] -> \* Make a proper navbar
 -   [] -> \* Make a proper vehicle listing and detail page
+-   [] -

@@ -1,115 +1,119 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <div class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold text-center mb-8 text-white">Contact Us</h1>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+<div class="container mx-auto px-4 py-12">
+	<h1 class="text-4xl font-bold text-center mb-8 text-white">Contact Us</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Contact Form -->
-      <div class="bg-gradient-to-r from-white via-zink-500 to-gray-400 p-8 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-semibold mb-6">Send Us a Message</h2>
-        <form>
-          <div class="mb-4">
-            <label for="name" class="block text-sm font-medium mb-2">Name</label>
-            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Your Name">
-          </div>
-          <div class="mb-4">
-            <label for="email" class="block text-sm font-medium mb-2">Email</label>
-            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Your Email">
-          </div>
-          <div class="mb-4">
-            <label for="message" class="block text-sm font-medium mb-2">Message</label>
-            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Your Message"></textarea>
-          </div>
-          <button type="submit" class="w-full bg-gradient-to-r from-black via-black-900 to-gray-900 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">Send Message</button>
-        </form>
-      </div>
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+		<!-- Contact Form -->
+		<div class="bg-gradient-to-r from-white via-zink-500 to-gray-400 p-8 rounded-lg shadow-lg">
+			<h2 class="text-2xl font-semibold mb-6">Send Us a Message</h2>
+			<form>
+				<div class="mb-4">
+					<label for="name" class="block text-sm font-medium mb-2">Name</label>
+					<input type="text" id="name" class="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Your Name" />
+				</div>
+				<div class="mb-4">
+					<label for="email" class="block text-sm font-medium mb-2">Email</label>
+					<input type="email" id="email" class="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Your Email" />
+				</div>
+				<div class="mb-4">
+					<label for="message" class="block text-sm font-medium mb-2">Message</label>
+					<textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Your Message"></textarea>
+				</div>
+				<button type="submit" class="w-full bg-gradient-to-r from-black via-black-900 to-gray-900 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">Send Message</button>
+			</form>
+		</div>
 
-      <!-- Social Media & Info -->
-      <div class=" p-8 rounded-lg shadow-lg transparent text-white">
-        <h2 class="text-2xl font-semibold mb-6">Connect With Us</h2>
-        <div class="space-y-6">
-          <!-- Social Media Links -->
-          <div>
-            <h3 class="text-lg font-medium mb-4">Follow Us</h3>
-            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
-                <h2 class="text-white text-lg font-semibold mb-4">Connect With Us</h2>
-                <!-- Icons in One Line -->
-                <div class="flex space-x-4">
-                  <!-- Instagram -->
-                  <a href="https://www.instagram.com" target="_blank" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-pink-600 transition duration-300">
-                    <i class="fab fa-instagram text-xl text-white"></i>
-                  </a>
-            
-                  <!-- Facebook -->
-                  <a href="https://www.facebook.com" target="_blank" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-blue-600 transition duration-300">
-                    <i class="fab fa-facebook text-xl text-white"></i>
-                  </a>
-            
-                  <!-- WhatsApp -->
-                  <a href="https://wa.me/yourphonenumber" target="_blank" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-green-500 transition duration-300">
-                    <i class="fab fa-whatsapp text-xl text-white"></i>
-                  </a>
-            
-                  <!-- Telegram -->
-                  <a href="https://t.me/yourusername" target="_blank" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-blue-400 transition duration-300">
-                    <i class="fab fa-telegram text-xl text-white"></i>
-                  </a>
-            
-                  <!-- Email -->
-                  <a href="mailto:youremail@example.com" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-red-600 transition duration-300">
-                    <i class="fas fa-envelope text-xl text-white"></i>
-                  </a>
-            
-                  <!-- Call -->
-                  <a href="tel:+1234567890" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-green-600 transition duration-300">
-                    <i class="fas fa-phone text-xl text-white"></i>
-                  </a>
-                </div>
-              </div>
-            
-          </div>
+		<!-- Social Media & Info -->
+		<div class="p-8 rounded-lg shadow-lg transparent text-white">
+			<h2 class="text-2xl font-semibold mb-6">Connect With Us</h2>
+			<div class="space-y-6">
+				<!-- Social Media Links -->
+				<div>
+					<h3 class="text-lg font-medium mb-4">Follow Us</h3>
+					<div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+						<h2 class="text-white text-lg font-semibold mb-4">Connect With Us</h2>
+						<!-- Icons in One Line -->
+						<div class="flex space-x-4">
+							<!-- Instagram -->
+							<a href="https://www.instagram.com" target="_blank" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-pink-600 transition duration-300">
+								<i class="fab fa-instagram text-xl text-white"></i>
+							</a>
 
-          <!-- Contact Info -->
-          <div>
-            <h3 class="text-lg font-medium mb-4">Contact Information</h3>
-            <ul class="space-y-2">
-              <li class="flex items-center space-x-2">
-                <i class="fas fa-map-marker-alt text-blue-500"></i>
-                <span>123 Main St, Addis Ababa, Ethiopia</span>
-              </li>
-              <li class="flex items-center space-x-2">
-                <i class="fas fa-phone text-blue-500"></i>
-                <span>+1 (123) 456-7890</span>
-              </li>
-              <li class="flex items-center space-x-2">
-                <i class="fas fa-envelope text-blue-500"></i>
-                <span>info@zi-mekina.com</span>
-              </li>
-            </ul>
-          </div>
+							<!-- Facebook -->
+							<a href="https://www.facebook.com" target="_blank" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-blue-600 transition duration-300">
+								<i class="fab fa-facebook text-xl text-white"></i>
+							</a>
 
-          <!-- Newsletter Subscription -->
-          <div>
-            <h3 class="text-lg font-medium mb-4">Subscribe to Our Newsletter</h3>
-            <form x-data="{ email: '' }" @submit.prevent="alert(`Subscribed with: ${email}`)">
-              <div class="flex">
-                <input type="email" x-model="email" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-l-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter your email">
-                <button type="submit" class="bg-blue-600 text-white px-4 rounded-r-lg hover:bg-blue-700 transition duration-300">Subscribe</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+							<!-- WhatsApp -->
+							<a href="https://wa.me/yourphonenumber" target="_blank" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-green-500 transition duration-300">
+								<i class="fab fa-whatsapp text-xl text-white"></i>
+							</a>
 
-    <!-- Map Section -->
-    <div class="mt-12 bg-gray-800 p-8 rounded-lg shadow-lg text-white">
-      <h2 class="text-2xl font-semibold mb-6">Our Location</h2>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.9537353153166!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d6eb6c678bde!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1625070000000!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg"></iframe>
-    </div>
-  </div>
-</body>
-</html>
-{% endblock content %}
+							<!-- Telegram -->
+							<a href="https://t.me/yourusername" target="_blank" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-blue-400 transition duration-300">
+								<i class="fab fa-telegram text-xl text-white"></i>
+							</a>
+
+							<!-- Email -->
+							<a href="mailto:youremail@example.com" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-red-600 transition duration-300">
+								<i class="fas fa-envelope text-xl text-white"></i>
+							</a>
+
+							<!-- Call -->
+							<a href="tel:+1234567890" class="flex justify-center items-center w-10 h-10 bg-gray-700 rounded-lg hover:bg-green-600 transition duration-300">
+								<i class="fas fa-phone text-xl text-white"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Contact Info -->
+				<div>
+					<h3 class="text-lg font-medium mb-4">Contact Information</h3>
+					<ul class="space-y-2">
+						<li class="flex items-center space-x-2">
+							<i class="fas fa-map-marker-alt text-blue-500"></i>
+							<span>123 Main St, Addis Ababa, Ethiopia</span>
+						</li>
+						<li class="flex items-center space-x-2">
+							<i class="fas fa-phone text-blue-500"></i>
+							<span>+1 (123) 456-7890</span>
+						</li>
+						<li class="flex items-center space-x-2">
+							<i class="fas fa-envelope text-blue-500"></i>
+							<span>info@zi-mekina.com</span>
+						</li>
+					</ul>
+				</div>
+
+				<!-- Newsletter Subscription -->
+				<div>
+					<h3 class="text-lg font-medium mb-4">Subscribe to Our Newsletter</h3>
+					<form x-data="{ email: '' }" @submit.prevent="alert(`Subscribed with: ${email}`)">
+						<div class="flex">
+							<input type="email" x-model="email" class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-l-lg focus:ring-2 focus:ring-blue-500" placeholder="Enter your email" />
+							<button type="submit" class="bg-blue-600 text-white px-4 rounded-r-lg hover:bg-blue-700 transition duration-300">Subscribe</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- Map Section -->
+		<div class="mt-12 bg-gray-800 p-8 rounded-lg shadow-lg text-white">
+			<h2 class="text-2xl font-semibold mb-6">Our Location</h2>
+			<iframe
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8354345093747!2d144.9537353153166!3d-37.816279742021665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d6eb6c678bde!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1625070000000!5m2!1sen!2sus"
+				width="100%"
+				height="300"
+				style="border: 0"
+				allowfullscreen=""
+				loading="lazy"
+				class="rounded-lg"
+			></iframe>
+		</div>
+	</div>
+	{% endblock content %}
+</div>
