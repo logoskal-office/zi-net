@@ -1,4 +1,12 @@
 {% extends 'base.html' %} {% load humanize %} {% block content %}
+<div class="max-w-4xl mx-auto mb-12 text-center">
+	<h1 class="text-6xl font-semibold text-neutral-900 dark:text-neutral-100 mb-4 transition-colors duration-300">Pick A Car Of Your Choice</h1>
+	<p class="text-xl text-neutral-600 dark:text-neutral-300 leading-relaxed transition-colors duration-300">
+		<span class="font-bold text-green-300 border-b-4 border-lime-300 text-2xl">Explore</span> our curated selection of world-class pre-owned and owned cars, and
+		<span class="font-bold text-green-300 border-b-4 border-lime-300 text-2xl">Pick A Car</span>
+		of Your Choice.
+	</p>
+</div>
 
 <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 mx-2">
 	{% for vehicle in vehicles %}
@@ -7,7 +15,7 @@
 	>
 		<!-- Image Section -->
 		<div class="relative aspect-video bg-neutral-100 dark:bg-neutral-900">
-			<img src="{{  vehicle.images.first.image.url }}" alt="Vehicle" class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-screen" />
+			<img src="{{ vehicle.images.first.image.url }}" alt="Vehicle" class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-screen" />
 		</div>
 
 		<!-- Content Section -->
@@ -33,14 +41,14 @@
 	</div>
 	{% endfor %} {% for vehicle in vehicles %}
 	<div
-		class="max-w-sm mx-auto bg-white border-2 border-black/20 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:scale-105 hover:bg-neutral-100 hover:dark:bg-neutral-900 hover:border-neutral-700 hover:dark:border-neutral-100 focus:shadow-lg focus:scale-105 focus:dark:bg-neutral-900 focus:border-neutral-700 focus:dark:border-neutral-100 transition-shadow transition-scale duration-600"
+		class="max-w-sm mx-auto bg-white border-2 border-black/20 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:scale-105 hover:bg-neutral-100 hover:dark:bg-neutral-900 hover:border-neutral-700 hover:dark:border-neutral-100 focus:shadow-lg focus:scale-105 focus:dark:bg-neutral-900 focus:border-neutral-700 focus:dark:border-neutral-100 transition-shadow transition-scale duration-600 relative z-0"
 	>
 		<!-- Image Section -->
-		<div class="relative aspect-video bg-neutral-100 dark:bg-neutral-900">
+		<div class="relative aspect-video bg-neutral-100 dark:bg-neutral-900 z-0">
 			<img
 				src="https://images.unsplash.com/photo-1704340142770-b52988e5b6eb?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8Y2FyfGVufDB8fDB8fHww"
 				alt="Vehicle"
-				class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-screen"
+				class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-screen z-0"
 			/>
 		</div>
 
