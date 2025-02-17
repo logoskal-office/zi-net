@@ -1,11 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Wouldn't You Like To Know Weather Boy
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		Wouldn't You Like To Know Weather Boy
+		<div class="max-w-2xl mx-auto" x-data="{ darkMode: false }">
+			<!-- Toggle Button -->
+			<button @click="darkMode = !darkMode" class="mb-4 p-2 rounded-full bg-white dark:bg-gray-800 shadow-lg">
+				<i x-show="!darkMode" class="fas fa-moon text-gray-600"></i>
+				<i x-show="darkMode" class="fas fa-sun text-yellow-400"></i>
+			</button>
+
+			<!-- Card -->
+			<div class="relative group rounded-3xl overflow-hidden shadow-2xl transition-all duration-300 hover:shadow-xl dark:hover:shadow-gray-800/40" :class="darkMode ? 'dark' : ''">
+				<!-- Image Background -->
+				<div class="absolute inset-0">
+					<img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-300" />
+					<div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent dark:from-gray-900/80"></div>
+				</div>
+
+				<!-- Content -->
+				<div class="relative p-6 md:p-8 h-96 flex flex-col justify-between">
+					<!-- Top Section -->
+					<div class="flex justify-between items-start">
+						<div>
+							<h2 class="text-2xl md:text-3xl font-bold text-white">Ford Mustang GT</h2>
+							<p class="text-gray-300 mt-1">Performance Edition</p>
+						</div>
+						<span class="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold"> $58,900 </span>
+					</div>
+
+					<!-- Details Grid -->
+					<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-auto bg-white/10 backdrop-blur-sm p-4 rounded-xl">
+						<div class="text-center">
+							<p class="text-white font-semibold">2023</p>
+							<p class="text-gray-300 text-sm">Year</p>
+						</div>
+						<div class="text-center">
+							<p class="text-white font-semibold">8,200</p>
+							<p class="text-gray-300 text-sm">Miles</p>
+						</div>
+						<div class="text-center">
+							<p class="text-white font-semibold">310 mi</p>
+							<p class="text-gray-300 text-sm">Range</p>
+						</div>
+						<div class="text-center">
+							<p class="text-white font-semibold">5.0L V8</p>
+							<p class="text-gray-300 text-sm">Engine</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Badge -->
+				<div class="absolute top-4 right-4 bg-amber-400 dark:bg-amber-500 text-gray-900 px-3 py-1 rounded-full text-sm font-medium">Just Reduced</div>
+			</div>
+		</div>
+	</body>
 </html>

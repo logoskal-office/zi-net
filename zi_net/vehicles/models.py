@@ -86,7 +86,7 @@ class Producer(models.Model):
 
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle, related_name='images', on_delete=models.CASCADE)
-    image = models.FileField(upload_to='vehicles/images/')
+    image = models.FileField(upload_to='vehicles/images/', max_length=300)
 
     def __str__(self):
         return str(self.vehicle.producer.name + "'s Image - ") + str(self.vehicle.id)
