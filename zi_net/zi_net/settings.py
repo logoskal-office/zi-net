@@ -10,7 +10,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['psalms.pythonanywhere.com', 'localhost']
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,10 +23,12 @@ INSTALLED_APPS = [
     #'silk',
     'crispy_forms',
     'crispy_tailwind',
+    'rest_framework',
     'user_auth',
     'django.contrib.humanize',
     'display.apps.DisplayConfig',
     'vehicles.apps.VehiclesConfig',
+    'api',
 
 ]
 
@@ -47,7 +48,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'django_browser_reload.middleware.BrowserReloadMiddleware',
     #'silk.middleware.SilkyMiddleware',
-    'user_auth.middleware.LoginRequiredMiddleware',
+    # 'user_auth.middleware.LoginRequiredMiddleware',
 ]
 
 
