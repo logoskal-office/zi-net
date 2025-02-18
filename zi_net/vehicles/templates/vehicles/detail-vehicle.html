@@ -1,17 +1,68 @@
-{% extends 'base.html' %} {% load humanize %} {% block body_classes %} bg-gray-900 text-gray-100 {% endblock body_classes %} {% block content %}
+{% extends 'base.html' %} {% load humanize %} {% block content %}
 <!-- Main Container -->
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 dark:text-gray-100">
 	<!-- Image & Details Grid -->
 	<div class="grid lg:grid-cols-2 gap-12 mb-16">
 		<!-- Main Image Section -->
-		<div class="relative group">
-			<div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 rounded-3xl"></div>
-			<img src="{{vehicle.images.all.url}}" alt="Luxury Car" class="rounded-3xl object-cover w-full h-[600px] shadow-2xl" />
-			{% if vehicle.price %}
-			<div class="absolute bottom-6 left-6 bg-gradient-to-r from-purple-900 via-indigo-600 to-gray-800 px-6 py-2 rounded-full shadow-lg">
-				<span class="text-2xl font-bold">{{ vehicle.price|intcomma }} {% if vehicle.price_negotiability %} (Negotiable){% endif %}</span>
+		<div
+			x-data="{ 
+    current: 0,
+    slides: [
+      {% for vehicle_image in vehicle.images.all|slice:'0:6' %}
+        {
+          image: '{{vehicle_image.image.url}}',
+          price: '{{vehicle.price|intcomma}}',
+          mileage: '{{vehicle.mileage|intcomma}}'
+        },
+      {% endfor %}
+    ]
+  }"
+			class="relative w-full group min-h-[25rem] lg:min-h-[30rem]"
+		>
+			<!-- Card Container -->
+
+			<div
+				class="rounded-xl overflow-hidden shadow-2xl border-2 border-white/20 bg-neutral-900 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/40 hover:z-20 hover:[transform-style:preserve-3d] hover:[transform:translateZ(50px)] h-full"
+			>
+				<!-- Carousel Container -->
+				<div class="relative w-full h-full overflow-hidden">
+					<template x-for="(slide, index) in slides" :key="index">
+						<div x-show="current === index" class="absolute inset-0">
+							<!-- Image -->
+							<img :src="slide.image" :alt="slide.title" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" />
+
+							<!-- Text Overlay -->
+							<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex flex-col justify-end p-4 space-y-4">
+								<!-- Info Panel -->
+								<div class="backdrop-blur-sm bg-black/30 p-2 rounded-xl">
+									<div class="flex items-center justify-between">
+										<div class="flex items-center gap-1">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 text-emerald-400">
+												<text x="2" y="20" font-size="40" fill="currentColor">$</text>
+											</svg>
+											<span class="text-white font-semibold text-lg" x-text="slide.price"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</template>
+				</div>
+
+				<!-- Navigation Arrows -->
+				<div class="absolute inset-0 flex items-center justify-between px-2 opacity-40 lg:opacity-0 group-hover:opacity-100 sm:opacity-100 transition-opacity">
+					<button @click="current = (current - 1 + slides.length) % slides.length" class="bg-black/50 hover:bg-black/70 p-3 rounded-full transition-all transform hover:scale-125">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+							<path fill-rule="evenodd" d="M12.707 15.707a1 1 0 01-1.414 0L6.293 10l5-5a1 1 0 111.414 1.414L8.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+						</svg>
+					</button>
+					<button @click="current = (current + 1) % slides.length" class="bg-black/50 hover:bg-black/70 p-3 rounded-full transition-all transform hover:scale-125">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+							<path fill-rule="evenodd" d="M7.293 4.293a1 1 0 011.414 0L13.707 10l-5 5a1 1 0 01-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+						</svg>
+					</button>
+				</div>
 			</div>
-			{% endif %}
 		</div>
 
 		<div class="space-y-8">
@@ -19,20 +70,42 @@
 				<h1 class="text-5xl font-bold mb-4">{{vehicle.producer.name}} {{vehicle.model}}</h1>
 				<div class="flex items-center space-x-6 text-gray-400">
 					{% if vehicle.production_year %}
-					<div class="flex items-center">
-						<hero-icon-outline name="calendar" class="w-5 h-5 mr-2"></hero-icon-outline>
-						<span>{{vehicle.production_year}} model</span>
+					<div
+						class="bg-transparent border border-red-600 text-red-600 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-red-600 hover:text-white active:bg-red-700 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+					>
+						<div class="flex items-center">
+							<span>{{vehicle.production_year}} model</span>
+						</div>
 					</div>
-					{% endif %} {% if vehicle.mileage == 0 %}
-					<div class="flex items-center">
-						<hero-icon-outline name="truck" class="w-5 h-5 mr-2"></hero-icon-outline>
-						<span>Brand New</span>
+					{% endif %} {% if vehicle.mileage < 5001 %}
+					<div
+						class="bg-transparent border border-red-600 text-red-600 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-red-600 hover:text-white active:bg-red-700 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+					>
+						<div class="flex items-center">
+							<span>Brand New </span>
+						</div>
 					</div>
 
-					{% elif vehicle.mileage > 0 %}
-					<div class="flex items-center">
-						<hero-icon-outline name="truck" class="w-5 h-5 mr-2"></hero-icon-outline>
-						<span>{{vehicle.mileage|intcomma}} km</span>
+					{% endif %} {% if vehicle.price_negotiability %}
+					<div
+						class="bg-transparent border border-lime-600 text-lime-600 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-red-600 hover:text-white active:bg-red-700 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+					>
+						<div class="grid grid-cols-2 gap-2 px-auto mx-auto">
+							<span>Negotiable</span>
+							<span class="flex items-center justify-center w-6 h-6 rounded-full bg-green-500">
+								<svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+								</svg>
+							</span>
+						</div>
+					</div>
+					{% elif not vehicle.vehicle_price_negotiability %}
+					<div
+						class="bg-transparent border border-gray-600 text-gray-600 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-gray-600 hover:text-white active:bg-red-700 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+					>
+						<span>Fixed Price</span>
+
+						📌
 					</div>
 					{% endif %}
 				</div>
@@ -41,14 +114,17 @@
 			<div class="grid grid-cols-2 gap-4">
 				<div class="bg-gray-800/50 p-4 rounded-xl border border-gray-700/50">
 					<hero-icon-outline name="bolt" class="w-8 h-8 text-purple-400 mb-2"></hero-icon-outline>
-					<h4 class="font-semibold mb-1">Hybrid Power</h4>
-					<p class="text-sm text-gray-400">650HP Twin-Turbo V8</p>
+					<h4 class="font-semibold">{{vehicle.condition}}</h4>
+					<p class="text-sm text-gray-400">{{vehicle.horsepower}}</p>
+					<p class="text-sm text-gray-400">{{vehicle.condition_check}}</p>
 				</div>
+				{% if vehicle.fuel_type.lower == 'el' or vehicle.fuel_type.lower == 'electric' %}
 				<div class="bg-gray-800/50 p-4 rounded-xl border border-gray-700/50">
 					<hero-icon-outline name="clock" class="w-8 h-8 text-indigo-400 mb-2"></hero-icon-outline>
-					<h4 class="font-semibold mb-1">0-60 mph</h4>
-					<p class="text-sm text-gray-400">2.9 Seconds</p>
+					<h4 class="font-semibold mb-1">{{vehicle.range}}</h4>
+					<p class="text-sm text-gray-400">{{vehicle.}}</p>
 				</div>
+				{% endif %}
 			</div>
 
 			<!-- Key Specs -->
@@ -57,8 +133,8 @@
 				<div class="flex justify-between items-center p-4 bg-gray-800/30 rounded-lg">
 					<span class="text-gray-400">Color</span>
 					<span
-						class="font-semibold text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
-						>Blue</span
+						class="font-semibold text-white bg-gradient-to-r from-blue-500 via-{{vehicle.color}}-600 to-{{vehicle.color}}-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-1.5 text-center"
+						>{{vehicle.color}}</span
 					>
 				</div>
 				{% endif %} {% if vehicle.top_speed %}
@@ -66,11 +142,26 @@
 					<span class="text-gray-400">Top Speed</span>
 					<span class="font-semibold">{{vehicle.top_speed}} kmph</span>
 				</div>
+				{% endif %} {% if vehicle.mileage < 5001 %}
+				<div class="flex justify-between items-center p-4 bg-gray-800/30 rounded-lg">
+					<span class="text-gray-400">Mileage</span>
+					<span class="font-semibold"> Brand New</span>
+				</div>
+				{% elif vehicle.mileage > 5000 %}
+				<div class="flex justify-between items-center p-4 bg-gray-800/30 rounded-lg">
+					<span class="text-gray-400">Mileage</span>
+					<span class="font-semibold"> {{vehicle.mileage}}</span>
+				</div>
 				{% endif %}
 				<div class="flex justify-between items-center p-4 bg-gray-800/30 rounded-lg">
 					<span class="text-gray-400">Transmission</span>
-					<span class="font-semibold"> {% if vehicle.transmission == 'AU' %} Automatic {% elif vehicle.transmission == 'MN' %} Manual {% elif vehicle.transmission == 'SM' %} Semi-Automatic {% endif %} </span>
+					<span class="font-semibold"> {% if vehicle.get_transmission_display %} {{vehicle.get_transmission_display}} {% else %} {{vehicle.transmission}} {% endif %}</span>
 				</div>
+				<div class="flex justify-between items-center p-4 bg-gray-800/30 rounded-lg">
+					<span class="text-gray-400">Fuel</span>
+					<span class="font-semibold"> {% if vehicle.get_fuel_display %} {{vehicle.get_fuel_type_display}} {% else %} {{vehicle.fuel_type}} {% endif %}</span>
+				</div>
+
 				{% for feature in vehicle.features.all %}
 				<button
 					class="bg-transparent border border-blue-600 text-blue-600 px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:bg-blue-600 hover:text-white active:bg-blue-700 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
@@ -84,11 +175,8 @@
 
 	<!-- Description Section -->
 	<div class="border-t border-gray-800 pt-12">
-		<h2 class="text-3xl font-bold mb-6">Engineering Excellence</h2>
-		<p class="text-gray-400 leading-relaxed max-w-3xl">
-			The Aurora GT redefines automotive perfection with its aerospace-inspired design and cutting-edge hybrid technology. Featuring a carbon fiber monocoque chassis and active aerodynamics, this masterpiece delivers unprecedented performance while
-			maintaining luxury comfort. The handcrafted interior features sustainable materials and a fully digital cockpit powered by AI-assisted driving systems.
-		</p>
+		<h2 class="text-3xl font-bold mb-6">Notes</h2>
+		<p class="text-gray-400 leading-relaxed max-w-3xl">{{vehicle.description}}</p>
 	</div>
 
 	<!-- CTA Section -->

@@ -69,65 +69,37 @@
 <!-- Vehicle Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-2">
 	{% for vehicle in vehicles %}
-	<div
-		class="max-w-sm mx-auto lg:mb-2 bg-white border-2 border-black/20 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:scale-105 hover:bg-neutral-100 hover:dark:bg-neutral-900 hover:border-neutral-700 hover:dark:border-neutral-100 focus:shadow-lg focus:scale-105 focus:dark:bg-neutral-900 focus:border-neutral-700 focus:dark:border-neutral-100 transition-shadow transition-scale duration-600"
-	>
-		<!-- Image Section -->
-		<div class="relative aspect-video bg-neutral-100 dark:bg-neutral-900">
-			<img src="{{ vehicle.images.first.image.url }}" alt="Vehicle" class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-screen" />
-		</div>
-
-		<!-- Content Section -->
-		<div class="p-4">
-			<div class="mb-1">
-				<h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">{{vehicle.producer.name}} {{vehicle.model}}</h3>
-				<p class="text-2xl font-light text-neutral-800 dark:text-neutral-200">&#8383; {{vehicle.price|intcomma}}</p>
+	<a href="{% url 'detail-vehicle-page' vehicle.id %}">
+		<div
+			class="max-w-sm mx-auto lg:mb-2 bg-white border-2 border-black/20 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:scale-105 hover:bg-neutral-100 hover:dark:bg-neutral-900 hover:border-neutral-700 hover:dark:border-neutral-100 focus:shadow-lg focus:scale-105 focus:dark:bg-neutral-900 focus:border-neutral-700 focus:dark:border-neutral-100 transition-shadow transition-scale duration-600"
+		>
+			<!-- Image Section -->
+			<div class="relative aspect-video bg-neutral-100 dark:bg-neutral-900">
+				<img src="{{ vehicle.images.first.image.url }}" alt="Vehicle" class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-screen" />
 			</div>
 
-			<!-- Spec Grid -->
-			<div class="grid grid-cols-3 gap-4 text-md border-t border-neutral-100 dark:border-neutral-700 pt-1">
-				<div>
-					<p class="text-neutral-800 dark:text-neutral-200 font-medium">{{vehicle.production_year}}</p>
+			<!-- Content Section -->
+			<div class="p-4">
+				<div class="mb-1">
+					<h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">{{vehicle.producer.name}} {{vehicle.model}}</h3>
+					<p class="text-2xl font-light text-neutral-800 dark:text-neutral-200">&#8383; {{vehicle.price|intcomma}}</p>
 				</div>
-				<div>
-					<p class="text-neutral-800 dark:text-neutral-200 font-medium">{{vehicle.mileage|intcomma}} KM</p>
-				</div>
-				<div>
-					<p class="text-neutral-800 dark:text-neutral-200 font-medium">{{vehicle.condition}}</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	{% endfor %} {% for vehicle in vehicles %}
-	<div
-		class="max-w-sm mx-auto lg:mb-2 bg-white border-2 border-black/20 dark:bg-neutral-800 rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:scale-105 hover:bg-neutral-100 hover:dark:bg-neutral-900 hover:border-neutral-700 hover:dark:border-neutral-100 focus:shadow-lg focus:scale-105 focus:dark:bg-neutral-900 focus:border-neutral-700 focus:dark:border-neutral-100 transition-shadow transition-scale duration-600"
-	>
-		<!-- Image Section -->
-		<div class="relative aspect-video bg-neutral-100 dark:bg-neutral-900">
-			<img src="{{ vehicle.images.first.image.url }}" alt="Vehicle" class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-screen" />
-		</div>
 
-		<!-- Content Section -->
-		<div class="p-4">
-			<div class="mb-1">
-				<h3 class="text-lg font-semibold text-neutral-900 dark:text-neutral-100 tracking-tight">{{vehicle.producer.name}} {{vehicle.model}}</h3>
-				<p class="text-2xl font-light text-neutral-800 dark:text-neutral-200">&#8383; {{vehicle.price|intcomma}}</p>
-			</div>
-
-			<!-- Spec Grid -->
-			<div class="grid grid-cols-3 gap-4 text-md border-t border-neutral-100 dark:border-neutral-700 pt-1">
-				<div>
-					<p class="text-neutral-800 dark:text-neutral-200 font-medium">{{vehicle.production_year}}</p>
-				</div>
-				<div>
-					<p class="text-neutral-800 dark:text-neutral-200 font-medium">{{vehicle.mileage|intcomma}} KM</p>
-				</div>
-				<div>
-					<p class="text-neutral-800 dark:text-neutral-200 font-medium">{{vehicle.condition}}</p>
+				<!-- Spec Grid -->
+				<div class="grid grid-cols-3 gap-4 text-md border-t border-neutral-100 dark:border-neutral-700 pt-1">
+					<div>
+						<p class="text-neutral-800 dark:text-neutral-200 font-medium">{{vehicle.production_year}}</p>
+					</div>
+					<div>
+						<p class="text-neutral-800 dark:text-neutral-200 font-medium">{{vehicle.mileage|intcomma}} KM</p>
+					</div>
+					<div>
+						<p class="text-neutral-800 dark:text-neutral-200 font-medium">{{vehicle.condition}}</p>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</a>
 	{% endfor %}
 </div>
 

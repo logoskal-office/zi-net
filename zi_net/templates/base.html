@@ -24,15 +24,16 @@
 	</head>
 	<body
 		x-cloak
-		class="font-sans h-screen {% block body_background %} dark:bg-gradient-to-r dark:from-black dark:via-black-900 dark:to-gray-900 bg-cover bg-center {% endblock body_background %} text-[#404654] {% block body_classes %} {% endblock body_classes %}"
+		class="font-sans h-screen {% block body_background %} dark:bg-gradient-to-r dark:from-black dark:via-black-900 dark:to-gray-900 bg-cover bg-center {% endblock body_background %} text-[#202634] {% block body_classes %} {% endblock body_classes %}"
 	>
 		{% block nav %}
 		<nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false" class="flex items-center justify-between gap-4 px-6 py-4 mb-8 z-20" aria-label="penguin ui menu">
 			<!-- Brand Logo -->
-			<a href="#" class="text-2xl font-bold text-neutral-900 dark:text-white">
+			<a href="{% url 'home-page' %}" class="text-2xl font-bold text-neutral-900 dark:text-white">
 				<span>Peng<span class="text-black dark:text-white">ui</span>n</span>
 			</a>
 			<!-- <img src="./your-logo.svg" alt="brand logo" class="w-10" /> -->
+			{% block search_bar %}
 			<div
 				x-data="{
     query: new URLSearchParams(window.location.search).get('q') || '',
@@ -171,10 +172,16 @@
 							</select>
 						</div>
 
-						<button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-300">Apply Filters</button>
+						<button
+							type="submit"
+							class="w-full px-4 py-2 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-gradient-to-r from-blue-400 via-blue-400 to-gray-400 dark:bg-gradient-to-r dark:from-black dark:via-black-900 dark:to-gray-900 transition-colors duration-300"
+						>
+							Apply Filters
+						</button>
 					</form>
 				</div>
 			</div>
+			{% endblock search_bar %}
 
 			<!-- Desktop Menu -->
 			<ul class="hidden items-center gap-6 shrink-0 sm:flex">
@@ -243,7 +250,7 @@
 						{% if user.is_staff %}
 						<li>
 							<a
-								href="#"
+								href="/admin"
 								class="block bg-neutral-50 px-4 py-2 text-sm text-neutral-600 hover:bg-neutral-900/5 hover:text-neutral-900 focus-visible:bg-neutral-900/10 focus-visible:text-neutral-900 focus-visible:outline-hidden dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-50/5 dark:hover:text-white dark:focus-visible:bg-neutral-50/10 dark:focus-visible:text-white"
 								>Admin Page</a
 							>
@@ -347,21 +354,26 @@
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
 								</svg>
 							</button>
-							<p class="text-sm text-neutral-600 dark:text-neutral-300">alice.brown@gmail.com</p>
+							<p class="text-sm text-neutral-600 dark:text-neutral-300">@{% if user.username %}{{user.username}}{% endif %}</p>
 						</div>
 					</div>
 				</li>
-				<li class="p-2"><a href="#" class="w-full text-lg font-bold text-black focus:underline dark:text-white" aria-current="page">Products</a></li>
-				<li class="p-2"><a href="#" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Pricing</a></li>
-				<li class="p-2"><a href="#" class="w-full text-lg font-medium text-neutral-600 focus:underline dark:text-neutral-300">Blog</a></li>
+				<li class="p-1"><a href="{% url 'list-all-vehicles-page' %}" class="w-full text-lg font-bold text-black focus:outline-hidden hover:border-b-4 dark:text-white" aria-current="page">Inventory</a></li>
+				<li class="p-1"><a href="#" class="w-full text-lg font-medium text-neutral-600 focus:outline-hidden hover:border-b-4 dark:text-neutral-300">Blog</a></li>
+				<li class="p-1"><a href="{% url 'contact-us-page' %}" class="w-full text-lg font-medium text-neutral-600 focus:outline-hidden hover:border-b-4 dark:text-neutral-300">Contact Us</a></li>
+				<li class="p-1"><a href="{% url 'about-us-page' %}" class="w-full text-lg font-medium text-neutral-600 focus:outline-hidden hover:border-b-4 dark:text-neutral-300">About Us</a></li>
 				<hr role="none" class="my-2 border-outline dark:border-neutral-700" />
-				<li class="p-2"><a href="#" class="w-full text-neutral-600 focus:underline dark:text-neutral-300">Dashboard</a></li>
-				<li class="p-2"><a href="#" class="w-full text-neutral-600 focus:underline dark:text-neutral-300">Subscription</a></li>
-				<li class="p-2"><a href="#" class="w-full text-neutral-600 focus:underline dark:text-neutral-300">Settings</a></li>
+				{% if user.is_staff %}
+				<li class="p-2"><a href="/admin" class="w-full text-neutral-600 focus:outline-hidden hover:border-b-4 dark:text-neutral-300">Admin Page</a></li>
+				{% endif %} {% if not user.is_staff %}
+				<li class="p-2"><a href="{% url 'create-vehicle-page' %}" class="w-full text-neutral-600 focus:outline-hidden hover:border-b-4 dark:text-neutral-300">Sell Your Car</a></li>
+				{% endif %}
+				<li class="p-2"><a href="#" class="w-full text-neutral-600 focus:outline-hidden hover:border-b-4 dark:text-neutral-300">Profile</a></li>
+				<li class="p-2"><a href="#" class="w-full text-neutral-600 focus:outline-hidden hover:border-b-4 dark:text-neutral-300">Favorites</a></li>
 				<!-- CTA Button -->
 				<li class="mt-4 w-full border-none">
 					<a
-						href="#"
+						href="{% url 'logout-page' %}"
 						class="rounded-sm bg-black border border-black px-4 py-2 block text-center font-medium tracking-wide text-neutral-100 hover:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black active:opacity-100 active:outline-offset-0 dark:bg-white dark:border-white dark:text-black dark:focus-visible:outline-white"
 						>Sign Out</a
 					>
