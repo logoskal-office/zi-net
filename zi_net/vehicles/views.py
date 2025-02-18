@@ -77,7 +77,52 @@ def detail_vehicle(request, pk):
     vehicle = get_object_or_404(Vehicle, pk=pk)
     return render(request, 'vehicles/detail-vehicle.html', {'vehicle': vehicle})
 
-def search(request, key: str):
+def query_filter(key=None, sort_by='date', sort_order='-', producer=None, year=None, year_min=None, year_max=None, price_min=None, price_max=None, fuel=None, mileage_min=0, mileage_max=500000):
+    
+    #sort and filter
+    results = Vehicle.objects.all()
+    if key:
+        results = results.filter(
+            Q(producer__name__icontains=key) | Q(model__icontains=key) | Q(common_name__icontains=key) | Q(description__icontains=key))
+    if producer:
+        results = results.filter(producer__name__icontains=producer)
+    if year:
+        results = results.filter(production_year=year)
+    else:
+        if year_min:
+            results = results.filter(production_year__gte=year_min)
+        if year_max:
+            results = results.filter(production_year__lte=year_max)
+    if fuel:
+        results = results.filter(fuel_type=fuel)
+    if mileage_min:
+        results = results.filter(mileage__gte=mileage_min)
+    if mileage_max:
+        results = results.filter(mileage__lte=mileage_max)
+    if price_min:
+        results = results.filter(price__gte=price_min)
+    if price_max:
+        results = results.filter(price__lte=price_max)
+    return results.order_by(sort_order + sort_by)
+
+def list_vehicles(request):
+    key = request.GET.get('q', None)
+    sort_by = request.GET.get('sort_by', 'date')
+    sort_order = request.GET.get('sort_order', '-')
+    key = request.GET.get('q', None)
+    producer = request.GET.get('producer', None)
+    year = request.GET.get('year', None)
+    year_min = request.GET.get('year_min', None)
+    year_max = request.GET.get('year_max', None)
+    price_min = request.GET.get('price_min', None)
+    price_max = request.GET.get('price_max', None)
+    fuel = request.GET.get('fuel', None)
+    mileage_min = request.GET.get('mileage_min', 0)
+    mileage_max = request.GET.get('mileage_max', 500000)
+
+    return render(request, 'vehicles/list-vehicles.html', {'vehicles': query_filter(key=key, sort_by=sort_by, sort_order=sort_order, producer=producer, year=year, year_min=year_min, year_max=year_max, price_min=price_min, price_max=price_max, fuel=fuel, mileage_min=mileage_min, mileage_max=mileage_max)})
+
+def search_vehicle(request, key: str):
     key = key.strip()
     filters = [' ', '#']
     if key in filters:

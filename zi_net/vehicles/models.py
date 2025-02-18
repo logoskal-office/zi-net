@@ -39,6 +39,7 @@ class Vehicle(models.Model):
     plate_state = models.CharField(blank=True, null=True, max_length=20, verbose_name='State Of Issued Plated')
     features = models.ManyToManyField('Feature', blank=True, verbose_name='Features')
     description = models.TextField(null=True, blank=True, verbose_name='Description', max_length=2000)
+    date = models.DateTimeField(null=True, auto_now_add=True)
     issues = models.TextField(blank=True, null=True, max_length=2000)
     frozen = models.BooleanField(default=False)
 
