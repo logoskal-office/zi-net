@@ -35,44 +35,50 @@
 			<!-- <img src="./your-logo.svg" alt="brand logo" class="w-10" /> -->
 			<div
 				x-data="{
-			  query: '',
-			  isFilterOpen: false,
-			  priceMin: new URLSearchParams(window.location.search).get('price_min') || '',
-			  priceMax: new URLSearchParams(window.location.search).get('price_max') || '',
-			  mileageMin: new URLSearchParams(window.location.search).get('mileage_min') || '',
-			  mileageMax: new URLSearchParams(window.location.search).get('mileage_max') || '',
-			  yearMin: new URLSearchParams(window.location.search).get('year_min') || '',
-			  yearMax: new URLSearchParams(window.location.search).get('year_max') || '',
-			  fuelType: new URLSearchParams(window.location.search).get('fuel_type') || '',
-			  performSearch() {
-				const url = new URL(window.location.origin + '/vehicles/search');
-				url.searchParams.set('q', this.query);
-				window.location.href = url.toString();
-			  },
-			  toggleFilter() {
-				this.isFilterOpen = !this.isFilterOpen;
-			  },
-			  updateUrl() {
-				const url = new URL(window.location.origin + '/vehicles/search');
-				this.priceMin ? url.searchParams.set('price_min', this.priceMin) : url.searchParams.delete('price_min');
-				this.priceMax ? url.searchParams.set('price_max', this.priceMax) : url.searchParams.delete('price_max');
-				this.mileageMin ? url.searchParams.set('mileage_min', this.mileageMin) : url.searchParams.delete('mileage_min');
-				this.mileageMax ? url.searchParams.set('mileage_max', this.mileageMax) : url.searchParams.delete('mileage_max');
-				this.yearMin ? url.searchParams.set('year_min', this.yearMin) : url.searchParams.delete('year_min');
-				this.yearMax ? url.searchParams.set('year_max', this.yearMax) : url.searchParams.delete('year_max');
-				this.fuelType ? url.searchParams.set('fuel_type', this.fuelType) : url.searchParams.delete('fuel_type');
-				window.location.href = url.toString();
-			  }
-			}"
+    query: new URLSearchParams(window.location.search).get('q') || '',
+    isFilterOpen: false,
+    priceMin: new URLSearchParams(window.location.search).get('price_min') || '',
+    priceMax: new URLSearchParams(window.location.search).get('price_max') || '',
+    mileageMin: new URLSearchParams(window.location.search).get('mileage_min') || '',
+    mileageMax: new URLSearchParams(window.location.search).get('mileage_max') || '',
+    yearMin: new URLSearchParams(window.location.search).get('year_min') || '',
+    yearMax: new URLSearchParams(window.location.search).get('year_max') || '',
+    fuelType: new URLSearchParams(window.location.search).get('fuel_type') || '',
+    performSearch() {
+      // Start with the current URL's query parameters...
+      const url = new URL(window.location.href);
+      // ...but force the pathname to '/vehicles/search'
+      url.pathname = '/vehicles/search';
+      // Set or update the search parameter 'q'
+      url.searchParams.set('q', this.query);
+      window.location.href = url.toString();
+    },
+    updateUrl() {
+      const url = new URL(window.location.href);
+      url.pathname = '/vehicles/search';
+      // Update or remove each filter parameter as needed:
+      this.priceMin ? url.searchParams.set('price_min', this.priceMin) : url.searchParams.delete('price_min');
+      this.priceMax ? url.searchParams.set('price_max', this.priceMax) : url.searchParams.delete('price_max');
+      this.mileageMin ? url.searchParams.set('mileage_min', this.mileageMin) : url.searchParams.delete('mileage_min');
+      this.mileageMax ? url.searchParams.set('mileage_max', this.mileageMax) : url.searchParams.delete('mileage_max');
+      this.yearMin ? url.searchParams.set('year_min', this.yearMin) : url.searchParams.delete('year_min');
+      this.yearMax ? url.searchParams.set('year_max', this.yearMax) : url.searchParams.delete('year_max');
+      this.fuelType ? url.searchParams.set('fuel_type', this.fuelType) : url.searchParams.delete('fuel_type');
+      window.location.href = url.toString();
+    },
+    toggleFilter() {
+      this.isFilterOpen = !this.isFilterOpen;
+    }
+  }"
 				class="relative w-full"
 			>
 				<!-- Search Input Container -->
 				<div class="relative">
-					<!-- Left Search Icon -->
+					<!-- Search Icon -->
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-600/50 dark:text-neutral-300/50">
 						<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
 					</svg>
-					<!-- Search Input Field -->
+					<!-- Search Input -->
 					<input
 						x-model="query"
 						@keydown.enter="performSearch"
@@ -82,7 +88,7 @@
 						aria-label="search"
 						class="w-full rounded border border-neutral-300 bg-neutral-50 py-2.5 pl-10 pr-10 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-white"
 					/>
-					<!-- Filter Button (Embedded inside the input) -->
+					<!-- Filter Toggle Button -->
 					<button @click="toggleFilter" type="button" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-neutral-600 dark:text-neutral-300">
 						<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L14 13.414V19a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5.586L3.293 6.707A1 1 0 013 6V4z" />
@@ -95,7 +101,7 @@
 					<form @submit.prevent="updateUrl" class="p-4 space-y-4">
 						<!-- Price Range -->
 						<div>
-							<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1"> Price Range </label>
+							<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Price Range</label>
 							<div class="flex gap-2">
 								<input
 									type="number"
@@ -114,7 +120,7 @@
 
 						<!-- Mileage Range -->
 						<div>
-							<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1"> Mileage Range </label>
+							<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Mileage Range</label>
 							<div class="flex gap-2">
 								<input
 									type="number"
@@ -133,7 +139,7 @@
 
 						<!-- Year Range -->
 						<div>
-							<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1"> Year Range </label>
+							<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Year Range</label>
 							<div class="flex gap-2">
 								<input
 									type="number"
@@ -152,7 +158,7 @@
 
 						<!-- Fuel Type -->
 						<div>
-							<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1"> Fuel Type </label>
+							<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Fuel Type</label>
 							<select
 								x-model="fuelType"
 								class="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100"
@@ -176,7 +182,7 @@
 					<div class="block relative flex ml-1 gap-1 text-neutral-600 dark:text-neutral-300">{% block nav_right_in_search %} {% endblock nav_right_in_search %}</div>
 				</li>
 				{% block nav_after_search %} {% endblock nav_after_search %}
-				<li><a href="{% url 'list-vehicle-page' %}" class="font-bold text-black underline-offset-2 hover:text-black focus:outline-hidden hover:border-b-4 dark:text-white dark:hover:text-white" aria-current="page">Inventory</a></li>
+				<li><a href="{% url 'list-all-vehicles-page' %}" class="font-bold text-black underline-offset-2 hover:text-black focus:outline-hidden hover:border-b-4 dark:text-white dark:hover:text-white" aria-current="page">Inventory</a></li>
 				<li><a href="{% url 'create-vehicle-page' %}" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-hidden hover:border-b-4 dark:text-neutral-300 dark:hover:text-white">Sell Your Car</a></li>
 				<li><a href="#" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-hidden hover:border-b-4 dark:text-neutral-300 dark:hover:text-white">Blog</a></li>
 				<li><a href="{% url 'contact-us-page' %}" class="font-medium text-neutral-600 underline-offset-2 hover:text-black focus:outline-hidden hover:border-b-4 dark:text-neutral-300 dark:hover:text-white">Contact Us</a></li>
