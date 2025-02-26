@@ -1,8 +1,8 @@
 .env/
 .recycle-bin/
 .node/
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.bmp
+# *.jpg
+# *.jpeg
+# *.png
+# *.gif
+# *.bmp
