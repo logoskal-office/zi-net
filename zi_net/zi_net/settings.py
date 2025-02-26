@@ -68,6 +68,7 @@ TEMPLATES = [
                 'general.context.phone_numbers',
                 'general.context.emails',
                 'general.context.socials',
+                'general.context.global_data',
             ],
         },
     },

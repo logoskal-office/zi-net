@@ -1,3 +1,5 @@
+from vehicles.models import Producer
+
 def phone_numbers(request):
     return {'phone_number_1': '+111', 'phone_number_2': '+222', 'phone_number_3': '+333'}
 
@@ -13,3 +15,6 @@ def socials(request):
             'facebook': 'facebook',
             'linkedin': 'linkedin',
             }
+
+def global_data(request):
+    return {'producers':Producer.objects.all()}

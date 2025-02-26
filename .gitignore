@@ -1,5 +1,6 @@
 .env/
 .recycle-bin/
+.node/
 *.jpg
 *.jpeg
 *.png

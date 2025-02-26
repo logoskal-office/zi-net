@@ -4,12 +4,9 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=0.9" />
 		<title>Zi-Mekina {% if page_title %} - {{page_title}} {% endif %}</title>
-		<script src="https://cdn.tailwindcss.com"></script>
-		<script>
-			tailwind.config = {
-				darkMode: "class",
-			};
-		</script>
+		<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+		<link rel="stylesheet" href="/static/css/style.css" />
+
 		<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
 		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,800;1,800&display=swap" rel="stylesheet" />
@@ -24,7 +21,7 @@
 	</head>
 	<body
 		x-cloak
-		class="font-sans h-screen {% block body_background %} dark:bg-gradient-to-r dark:from-black dark:via-black-900 dark:to-gray-900 bg-cover bg-center {% endblock body_background %} text-[#202634] {% block body_classes %} {% endblock body_classes %}"
+		class="font-sans h-screen {% block body_background %} bg-gradient-to-b from-white via-sky-50 to-sky-100 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-900 dark:to-black bg-cover bg-center {% endblock body_background %} text-[#202634] {% block body_classes %} {% endblock body_classes %}"
 	>
 		{% block nav %}
 		<nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false" class="flex items-center justify-between gap-4 px-6 py-4 mb-8 z-20" aria-label="penguin ui menu">
