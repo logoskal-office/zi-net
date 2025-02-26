@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Transparent Navbar</title>
+
+		<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<script src="https://cdn.tailwindcss.com"></script>
+
+		<style>
+			body {
+				background-image: url("https://images.unsplash.com/photo-1704340142770-b52988e5b6eb?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MXx8Y2FyfGVufDB8fDB8fHww");
+				background-size: cover;
+				background-position: center;
+			}
+		</style>
+	</head>
+
+	<body class="text-white">
+		<!-- Navbar -->
+		<div class="bg-transparent fixed w-full top-0 left-0 px-4 py-2 shadow-md z-50">
+			<div class="flex justify-end space-x-6">
+				<a href="{% url 'list-all-vehicles-page' %}" class="text-sm lg:text-xl hover:text-gray-400">Inventory</a>
+				<a href="{% url 'about-us-page' %}" class="text-sm lg:text-xl hover:text-gray-400">About Us</a>
+				<a href="{% url 'contact-us-page' %}" class="text-sm lg:text-xl hover:text-gray-400">Contact</a>
+			</div>
+		</div>
+
+		<!-- Main Title Section -->
+		<div class="relative min-h-screen text-center px-4">
+			<a href="{% url 'home-page' %}" class="absolute top-4 left-4 text-6xl md:text-9xl font-bold bg-gradient-to-r from-sky-700 via-sky-500 to-red-500 text-transparent bg-clip-text mb-4"> Zi-Mekina </a>
+
+			<div class="flex flex-col items-center justify-center min-h-screen text-center">
+				<div class="text-4xl font-bold lg:text-5xl mb-8 text-sky-700 bg-clip-text" style="-webkit-text-stroke: 0.25px rgb(134, 134, 214)">Explore Our Collection</div>
+
+				<!-- Search Bar and Filters -->
+				<div
+					x-data="{
+                query: new URLSearchParams(window.location.search).get('q') || '',
+                isFilterOpen: false,
+                priceMin: new URLSearchParams(window.location.search).get('price_min') || '',
+                priceMax: new URLSearchParams(window.location.search).get('price_max') || '',
+                mileageMin: new URLSearchParams(window.location.search).get('mileage_min') || '',
+                mileageMax: new URLSearchParams(window.location.search).get('mileage_max') || '',
+                yearMin: new URLSearchParams(window.location.search).get('year_min') || '',
+                yearMax: new URLSearchParams(window.location.search).get('year_max') || '',
+                fuelType: new URLSearchParams(window.location.search).get('fuel_type') || '',
+                producer: new URLSearchParams(window.location.search).get('producer') || '',
+                performSearch() {
+                    const url = new URL(window.location.href);
+                    url.pathname = '/vehicles/search';
+                    url.searchParams.set('q', this.query);
+                    window.location.href = url.toString();
+                },
+                updateUrl() {
+                    const url = new URL(window.location.href);
+                    url.pathname = '/vehicles/search';
+                    this.priceMin && url.searchParams.set('price_min', this.priceMin);
+                    this.priceMax && url.searchParams.set('price_max', this.priceMax);
+                    this.mileageMin && url.searchParams.set('mileage_min', this.mileageMin);
+                    this.mileageMax && url.searchParams.set('mileage_max', this.mileageMax);
+                    this.yearMin && url.searchParams.set('year_min', this.yearMin);
+                    this.yearMax && url.searchParams.set('year_max', this.yearMax);
+                    this.fuelType && url.searchParams.set('fuel_type', this.fuelType);
+                    this.producer && url.searchParams.set('producer', this.producer);
+                    window.location.href = url.toString();
+                }
+            }"
+					class="w-full max-w-md mb-8"
+				>
+					<!-- Search Input -->
+					<div class="relative mb-4">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-neutral-600/50">
+							<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+						</svg>
+						<input
+							x-model="query"
+							@keydown.enter="performSearch"
+							type="search"
+							name="search"
+							placeholder="Search"
+							aria-label="search"
+							class="w-full rounded border border-neutral-300 bg-neutral-50 py-2.5 pl-10 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-black dark:border-neutral-700 dark:bg-white-700/90 dark:focus:ring-white"
+						/>
+					</div>
+
+					<!-- Filters -->
+					<div class="grid grid-cols-3 gap-4">
+						<div>
+							<select x-model="producer" @change="updateUrl" class="w-full mt-1 rounded border bg-neutral-50 py-2.5 text-sm dark:bg-neutral-900/50 dark:border-neutral-700">
+								<option value="">Producer</option>
+								<option value="toyota">Toyota</option>
+								<option value="ford">Ford</option>
+								<option value="honda">Honda</option>
+							</select>
+						</div>
+						<div>
+							<input x-model="yearMin" @input="updateUrl" type="number" min="1900" max="2099" placeholder="Year" class="w-full mt-1 rounded border bg-neutral-50 py-2.5 text-sm dark:bg-neutral-900/50 dark:border-neutral-700" />
+						</div>
+						<div>
+							<select x-model="priceMin" @change="updateUrl" class="w-full mt-1 rounded border bg-neutral-50 py-2.5 text-sm dark:bg-neutral-900/50 dark:border-neutral-700">
+								<option value="">Price Range</option>
+								<option value="0-5000">0 - 5000</option>
+								<option value="5000-10000">5000 - 10000</option>
+								<option value="10000-20000">10000 - 20000</option>
+								<option value="20000-50000">20000 - 50000</option>
+								<option value="50000+">50000+</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer Section -->
+		<div class="absolute bottom-0 left-0 right-0 py-10 bg-gradient-to-t from-black to-transparent">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 text-white">
+				<span class="hidden md:block text-xl font-semibold"> Zi is designed to ensure you get the best deal. We will help you make an informed decision. Experience the future of car buying today. </span>
+				<div class="flex justify-end space-x-6">
+					<button type="button" class="px-2 py-1 rounded-full text-lg lg:text-2xl text-white bg-gray-900 hover:bg-gray-700">👉 Find The Perfect Car For You</button>
+					<button type="button" class="px-2 py-1 rounded-full text-lg lg:text-2xl text-white bg-gray-900 hover:bg-gray-700">☎ Find A Buyer For Your Car</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
