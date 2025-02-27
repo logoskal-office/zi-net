@@ -4,7 +4,7 @@
 		<form method="post" enctype="multipart/form-data">
 			{% csrf_token %}
 
-			<div>{{ vehicle_creation_form|crispy}}</div>
+			<div class="dark:black dark:text-amber-400">{{ vehicle_creation_form|crispy}}</div>
 			<label for="images">Upload Images Of The Car:</label>
 			<input type="file" name="images" id="images" accept="image/*" multiple />
 			<button type="submit">Upload Vehicle</button>

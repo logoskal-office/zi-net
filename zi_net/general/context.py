@@ -17,4 +17,5 @@ def socials(request):
             }
 
 def global_data(request):
-    return {'producers':Producer.objects.all()}
+    return {'site_name': 'Zi-Mekina',
+        'producers':Producer.objects.all()}
