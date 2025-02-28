@@ -69,6 +69,7 @@ TEMPLATES = [
                 'general.context.emails',
                 'general.context.socials',
                 'general.context.global_data',
+                'general.context.tailwind_style',
             ],
         },
     },

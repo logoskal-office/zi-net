@@ -21,7 +21,7 @@
 	</head>
 	<body
 		x-cloak
-		class="font-sans h-screen {% block body_background %} bg-gradient-to-b from-white via-sky-50 to-sky-100 dark:bg-gradient-to-r dark:from-black dark:via-gray-900 dark:to-gray-900 bg-cover bg-center {% endblock body_background %} text-[#202634] {% block body_classes %} {% endblock body_classes %}"
+		class="font-sans h-screen {% block body_background %} bg-gradient-to-b from-slate-50 via-sky-50 to-sky-200 dark:bg-gradient-to-tr dark:from-neutral-900 dark:via-zinc-900 dark:to-gray-900 bg-cover bg-center {% endblock body_background %} text-[#202634] {% block body_classes %} {% endblock body_classes %}"
 	>
 		{% block nav %}
 		<nav x-data="{ mobileMenuIsOpen: false }" x-on:click.away="mobileMenuIsOpen = false" class="flex items-center justify-between gap-4 px-6 py-4 mb-8 z-20" aria-label="penguin ui menu">

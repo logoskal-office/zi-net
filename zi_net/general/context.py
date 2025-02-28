@@ -19,3 +19,10 @@ def socials(request):
 def global_data(request):
     return {'site_name': 'Zi-Mekina',
         'producers':Producer.objects.all()}
+
+def tailwind_style(request):
+    return {
+        'light_bg_gradient': 'bg-gradient-to-b from-slate-50 via-sky-50 to-sky-200',
+        'dark_bg_gradient': 'dark:bg-gradient-to-tr dark:from-neutral-900 dark:via-zinc-900 dark:to-gray-900',
+        'full_bg_gradient':'bg-gradient-to-b from-slate-50 via-sky-50 to-sky-200 dark:bg-gradient-to-tr dark:from-neutral-900 dark:via-zinc-900 dark:to-gray-900 bg-cover bg-center'
+    }
