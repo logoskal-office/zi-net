@@ -11,37 +11,49 @@ def get_upload_location_based_on_id(instance, filename):
 class Vehicle(models.Model):
     owner = models.ForeignKey('user_auth.Customer', related_name='owned_cars', on_delete=models.DO_NOTHING, blank=True, null=True)
     broker = models.ForeignKey('user_auth.Broker', related_name='owned_cars', on_delete=models.DO_NOTHING, blank=True, null=True)
+    
+    # Model Info
     producer = models.ForeignKey(to='Producer', verbose_name='Producer/Manufacturer', on_delete=models.DO_NOTHING)
     model = models.CharField(max_length=40, verbose_name='Model')
     common_name = models.CharField(blank=True, null=True, max_length=50, verbose_name='Common Name')
     production_year = models.PositiveIntegerField(blank=True, null=True, verbose_name='Production Year', validators=[MaxValueValidator(2025), MinValueValidator(1995)])
     production_country = models.CharField(blank=True, null=True, max_length=10, verbose_name='Production Country')
+    body_type = models.CharField(null=True, max_length=20, verbose_name='Body Type')
+    
+    # Spec
+    cylinder_number = models.SmallIntegerField(blank=True, null=True, verbose_name='Cylinder Number', validators=[MaxValueValidator(16), MinValueValidator(3)]) # - size limit    
+    horsepower = models.PositiveSmallIntegerField(blank=True, null=True, validators=[MaxValueValidator(2000)])
+    battery_capacity = models.PositiveIntegerField(blank=True, null=True, verbose_name='Battery Capacity In kWh', validators=[MaxValueValidator(500000)])
+    top_speed = models.PositiveIntegerField(blank=True, null=True, verbose_name="Top Speed")
+    zero_to_hundered = models.FloatField(blank=True, null=True, verbose_name='Accelaration (0 To 100)', validators=[MaxValueValidator(10), MinValueValidator(2)],)
+    transmission = models.CharField(null=True, max_length=20,  verbose_name='Transmission')
+    range = models.PositiveIntegerField(blank=True, null=True, verbose_name='Range In KM', validators=[MaxValueValidator(2000)])
+    fuel_type = models.CharField(null=True, max_length=20,  verbose_name='Fuel')
+    offroad = models.BooleanField(null=True, blank=True)
+    
+    # Customization Info
+    color = models.CharField(null=True, max_length=20, verbose_name='Color')
+    seat_size = models.PositiveIntegerField(blank=True, null=True, verbose_name='Number Of Seats', validators=[MaxValueValidator(8), MinValueValidator(1)]) # - size limit
+    features = models.ManyToManyField('Feature', blank=True, verbose_name='Features')
+    
+    # Business Info
     price = models.PositiveIntegerField(null=True, verbose_name='Price') # - size llimit
     price_negotiability = models.BooleanField(null=True, verbose_name='Negotiable')
     existing_debt = models.IntegerField(blank=True, null=True, default=0, verbose_name='Existing-Debt') # -  size limit
-    body_type = models.CharField(null=True, max_length=20, verbose_name='Body Type')
-    color = models.CharField(null=True, max_length=20, verbose_name='Color')
-    seat_size = models.PositiveIntegerField(blank=True, null=True, verbose_name='Number Of Seats', validators=[MaxValueValidator(8), MinValueValidator(1)]) # - size limit
-    cylinder_number = models.SmallIntegerField(blank=True, null=True, verbose_name='Cylinder Number', validators=[MaxValueValidator(16), MinValueValidator(3)]) # - size limit    
-    mileage = models.PositiveIntegerField(blank=True, null=True, default=0, verbose_name='Mileage') # - size limit
-    range = models.PositiveIntegerField(blank=True, null=True, verbose_name='Range In KM', validators=[MaxValueValidator(2000)])
-    battery_capacity = models.PositiveIntegerField(blank=True, null=True, verbose_name='Battery Capacity In kWh', validators=[MaxValueValidator(500000)])
-    condition = models.CharField(blank=True, null=True, max_length=20,  verbose_name='Condition')
-    condition_check = models.BooleanField(blank=True, null=True, )
-    transmission = models.CharField(null=True, max_length=20,  verbose_name='Transmission')
-    fuel_type = models.CharField(null=True, max_length=20,  verbose_name='Fuel')
-    top_speed = models.PositiveIntegerField(blank=True, null=True, verbose_name="Top Speed")
-    horsepower = models.PositiveSmallIntegerField(blank=True, null=True, validators=[MaxValueValidator(2000)])
-    zero_to_hundered = models.FloatField(blank=True, null=True, verbose_name='Accelaration (0 To 100)', validators=[MaxValueValidator(10), MinValueValidator(2)],)
-    offroad = models.BooleanField(null=True, blank=True)
     plate_number = models.PositiveIntegerField(blank=True, null=True, verbose_name='Plate Number', validators=[MaxValueValidator(1), MinValueValidator(99999)]) # - size limit
     plate_ownership = models.CharField(blank=True, null=True, max_length=5, verbose_name='Type of Plate Number', )
     plate_state = models.CharField(blank=True, null=True, max_length=20, verbose_name='State Of Issued Plated')
-    features = models.ManyToManyField('Feature', blank=True, verbose_name='Features')
+
+    # Usage Info
+    mileage = models.PositiveIntegerField(blank=True, null=True, default=0, verbose_name='Mileage') # - size limit
+    condition = models.CharField(blank=True, null=True, max_length=20,  verbose_name='Condition')
+    condition_check = models.BooleanField(blank=True, null=True, )
+
+    # Notes
     description = models.TextField(null=True, blank=True, verbose_name='Description', max_length=2000)
-    date = models.DateTimeField(null=True, auto_now_add=True)
     issues = models.TextField(blank=True, null=True, max_length=2000)
     frozen = models.BooleanField(default=False)
+    date = models.DateTimeField(null=True, auto_now_add=True)
 
     class Meta:
         verbose_name = 'Vehicle'
