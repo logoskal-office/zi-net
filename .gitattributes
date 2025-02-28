@@ -1,2 +1,2 @@
 zi_net/staticfiles/* linguist-vendored
-.css linguist-vendored
+*.css linguist-vendored
