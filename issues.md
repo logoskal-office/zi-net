@@ -1,6 +1,6 @@
 \* Styling # - Bug $ - Backend + - Add feature
 
--   [] -> \* Make the home page an independent landing page \*
+-   [x] -> \* Make the home page an independent landing page \*
 -   [] -> \* Make the whole page load before the typing effect, and if possible not show anything before the background loads
 -   [] -> \*$+ Make a login, register, logout, page
 -   [x] -> \*$+ Make a create, edit, hide, and delete vehicle page
@@ -16,6 +16,7 @@
 -   [] - +$\* Integrate Messages
 -   [] - \* Style the formss
 -   [] - $ Logging Middleware
+-   [] - $ Expand the fields
 
 Immediate
 
